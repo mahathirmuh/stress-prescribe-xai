@@ -9,7 +9,11 @@ Penelitian ini bertujuan membangun **framework prediksi stres yang prescriptive*
 3. **Prescribe**: Counterfactual (DiCE) → perubahan minimal & realistis pada fitur
 4. **Naturalize**: **GenAI (GPT)** → narasi sistem pakar (saran empatik, kontekstual, actionable) dari output counterfactual
 
-Catatan: **evaluasi output GenAI** (bagaimana menguji rekomendasi sistem pakar) akan dibahas terpisah setelah implementasi inti jalan. Saat ini fokus pada membangun pipeline.
+Judul penelitian: **"Explainable Machine Learning with Counterfactual Analysis for Stress Prediction and Intervention Using Sleep and Lifestyle Data"**
+
+**Penting tentang scope GenAI**: Judul tidak memuat GenAI, sehingga GenAI diposisikan sebagai **deployment layer** untuk presentasi naratif kepada pengguna akhir, **bukan sebagai kontribusi ilmiah utama**. Evaluasi GenAI terbatas pada **faithfulness check otomatis + safety filter**, tidak memerlukan user study atau expert panel.
+
+Catatan: **evaluasi output GenAI** dalam bentuk rigor (user study, expert review) akan dibahas terpisah setelah implementasi inti jalan. Saat ini fokus pada membangun pipeline.
 
 Unsur keterbaruan vs [research_draft.md](research_draft.md):
 - **Tahap 4 (GenAI naturalisasi)** belum ada di draft, perlu ditambahkan ke `research_draft.md` (di luar plan mode)
@@ -88,12 +92,52 @@ Tabel R²/RMSE/MAE per model + 5-Fold CV pada model terbaik. Bar chart. Pilih `b
 - Konsistensi top-10 lintas model
 
 ### Section 9 — Counterfactual Analysis (DiCE)
-- `dice_ml.Data` + `dice_ml.Model(model_type='regressor')`
-- 3 individu: `generate_counterfactuals(total_CFs=5, desired_range=[lower, upper])`
-- **Lock immutable**: `age`, `gender`, `occupation`, `country`, `bmi`, `chronotype`, `season`, `shift_work`
-- **Actionable**: `sleep_duration_hrs`, `sleep_quality_score`, `screen_time_before_bed_mins`, `caffeine_mg_before_bed`, `exercise_day`, `wake_episodes_per_night`
-- Plausibility check (range realistis)
-- Tabel: original → CF → delta prediksi
+
+#### 9.1 Kategorisasi Fitur (Causal Soundness)
+
+Fitur dikelompokkan dengan ketat sebelum CF generation untuk menjamin **"Intervention" di judul terpenuhi**:
+
+| Kategori | Fitur | Boleh diubah CF? |
+|---|---|---|
+| **Behavior (intervensi langsung)** | `sleep_duration_hrs`, `screen_time_before_bed_mins`, `caffeine_mg_before_bed`, `alcohol_units_before_bed`, `exercise_day`, `steps_that_day`, `nap_duration_mins`, `room_temperature_celsius`, `sleep_aid_used` | ✅ |
+| **Outcome (gejala/hasil dari kebiasaan)** | `sleep_quality_score`, `wake_episodes_per_night`, `sleep_latency_mins`, `rem_percentage`, `deep_sleep_percentage`, `heart_rate_resting_bpm` | ❌ — gunakan sebagai validator/indikator saja |
+| **Immutable** | `age`, `gender`, `occupation`, `country`, `bmi`, `chronotype`, `season`, `shift_work`, `mental_health_condition`, `day_type` | ❌ |
+
+#### 9.2 Setup DiCE dengan Permitted Range (Safety)
+
+`features_to_vary` = list behavior features di atas.
+
+`permitted_range` eksplisit per behavior feature (safety constraint):
+
+| Fitur | Range | Alasan |
+|---|---|---|
+| `sleep_duration_hrs` | [4.0, 10.0] | < 4 berbahaya, > 10 indikator depresi |
+| `caffeine_mg_before_bed` | [0, 400] | 400mg = batas aman FDA |
+| `alcohol_units_before_bed` | [0, 0] | Cegah rekomendasi konsumsi alkohol |
+| `screen_time_before_bed_mins` | [0, 180] | 0 tidak realistis, 180 batas atas |
+| `exercise_day` | [0, 1] | Binary |
+| `steps_that_day` | [1000, 15000] | Realistic range |
+| `nap_duration_mins` | [0, 30] | > 30 menit ganggu tidur malam |
+| `room_temperature_celsius` | [16, 26] | Range nyaman untuk tidur |
+| `sleep_aid_used` | [0, 1] | Binary |
+
+#### 9.3 CF Evaluation pada 50–100 Instance (Kuantitatif)
+
+Generate CF untuk **50–100 test instance** (stratified sampling by stress quartile), `total_CFs=3` per instance. Hitung 5 metrik standar komunitas DiCE:
+
+| Metrik | Definisi | Target |
+|---|---|---|
+| **Validity** | % CF yang mencapai `desired_range` target | ≥ 80% |
+| **Proximity** | Mean L1-distance normalized antara CF dan original | rendah = realistis |
+| **Sparsity** | Mean jumlah fitur yang diubah per CF | 2–4 ideal |
+| **Diversity** | Mean pairwise L1-distance antar k CF | sedang–tinggi |
+| **Plausibility** | % CF dalam `permitted_range` | 100% (jika setup benar) |
+
+Simpan tabel ke `outputs/reports/cf_evaluation_metrics.csv` + boxplot per quartile stress ke `outputs/figures/cf_metrics_*.png`.
+
+#### 9.4 Case Study 3 Individu (Naratif)
+
+3 individu (stres ~3, ~6, ~8.5) tetap di-generate untuk case study naratif di Section 11. Tampilkan tabel: original → CF → delta prediksi.
 
 ### Section 10 — GenAI Naturalisasi (BARU) 🆕
 Tujuan: ubah angka CF menjadi narasi sistem pakar yang empatik & actionable.
@@ -101,7 +145,9 @@ Tujuan: ubah angka CF menjadi narasi sistem pakar yang empatik & actionable.
 - **System prompt** (`prompts/expert_system_prompt.md`):
   - Peran: konselor kesehatan tidur & manajemen stres
   - Aturan: hanya gunakan fakta dari input (no hallucination), tone empatik, bahasa Indonesia awam
-  - Struktur output: ringkasan kondisi → 3 driver utama → 3 langkah konkret → motivasi
+  - **LARANGAN MUTLAK (safety)**: no diagnosis, no medical claims, no obat/suplemen, no terapi spesifik, no janji pasti
+  - **Disclaimer wajib** di setiap output
+  - Struktur output: ringkasan kondisi → 3 driver utama → 3 langkah konkret → motivasi → disclaimer
 - **User prompt template** per individu, berisi:
   - (a) Profil singkat (umur, gender, pekerjaan)
   - (b) Prediksi `stress_score` aktual
@@ -126,17 +172,44 @@ Tujuan: ubah angka CF menjadi narasi sistem pakar yang empatik & actionable.
       {"action": "...", "target": "...", "rationale": "..."},
       ...
     ],
-    "encouragement": "..."
+    "encouragement": "...",
+    "disclaimer": "..."
   }
   ```
 - Generate untuk 3 individu (low/mid/high), simpan ke `outputs/recommendations/individual_{id}.json`
 - Tampilkan inline di notebook + render markdown
+- **Safety filter (post-generation)**: regex check untuk kata terlarang (`obat`, `diagnosa`, `melatonin`, `antidepresan`, `menyembuhkan`, `akan menurunkan`, dll). Flag jika ada, lalu re-generate.
 
 ### Section 11 — Individual Insights & Kesimpulan
 Narasi 3 individu (low/mid/high): profil → prediksi → SHAP drivers → CF → rekomendasi GPT. Ringkasan: model terbaik, fitur paling berpengaruh, kontribusi penelitian (explainable + prescriptive + naturalized). Simpan ke `outputs/reports/individual_insights.md`.
 
-### Section 12 — Re-run Full 100k (di akhir)
-Set `USE_SAMPLE = False`, restart kernel, re-run section 1–11.
+### Section 12 — Limitations & Threats to Validity (BARU) 🆕
+
+Section eksplisit di notebook dan paper yang membahas keterbatasan jujur. Wajib untuk paper akademik formal.
+
+**12.1 Dataset Sintetis**
+- Dataset Sleep Health & Daily Performance (Kaggle) adalah **data sintetis**, bukan pengukuran riil dari subjek manusia
+- Korelasi & pola yang ditemukan mungkin merupakan artefak generator data, bukan fenomena alami
+- **Disclaimer**: Penelitian ini adalah **methodological proof-of-concept**, bukan validasi klinis. Generalisasi ke populasi nyata memerlukan validasi pada data klinis.
+
+**12.2 Asumsi Kausalitas pada Counterfactual**
+- DiCE mengasumsikan **causal stationarity**: perubahan fitur akan menghasilkan perubahan prediksi secara konsisten
+- Pada data sintetis, asumsi ini belum tentu valid → rekomendasi intervensi harus dipahami sebagai "kemungkinan", bukan "kepastian"
+- Validasi kausal nyata memerlukan eksperimen prospektif
+
+**12.3 GenAI Evaluation Scope**
+- Evaluasi GenAI terbatas pada **faithfulness check otomatis** (coverage, direction, hallucination)
+- Tidak ada user study, expert panel, atau validasi klinis output GenAI
+- GenAI diposisikan sebagai **deployment layer**, bukan kontribusi ilmiah → evaluasi rigor LLM di luar scope
+
+**12.4 Reproducibility Bound**
+- `random_state=42` digunakan konsisten, namun hasil GPT bersifat probabilistik meski dengan `temperature=0.3`
+- Variasi minor pada output GenAI bisa terjadi antar run
+
+Simpan ke `outputs/reports/limitations.md`.
+
+### Section 13 — Re-run Full 100k (di akhir)
+Set `USE_SAMPLE = False`, restart kernel, re-run section 1–12.
 
 ---
 
@@ -175,9 +248,15 @@ Catatan: pengujian/evaluasi output GenAI akan ditambah ke `research_draft.md` di
 
 - **Section 4**: CatBoost R² ≥ 0.6, MAE ≤ 1.0 pada sample 10k
 - **Section 7**: minimal satu model R² ≥ 0.65, top-3 SHAP konsisten lintas model
-- **Section 9**: CF menghasilkan ≥3 alternatif per kasus, delta prediksi ≥1.5 poin untuk kasus stres tinggi
-- **Section 10**: GPT output valid JSON, mencantumkan semua fitur dari CF, tone empatik & actionable (review manual user pada 3 output)
-- **Section 12**: semua section selesai pada full 100k tanpa error
+- **Section 9**: 
+  - CF generation: 3 alternatif per individu untuk 50–100 test instance
+  - Metrik target: Validity ≥ 80%, Plausibility 100%, Sparsity 2–4 fitur, Proximity rendah
+- **Section 10**: 
+  - GPT output valid JSON dengan field `disclaimer`
+  - Faithfulness check: coverage 100%, direction correct ≥ 95%
+  - Safety filter: 0 flagging kata terlarang
+- **Section 12**: Limitations section ditulis lengkap, mencakup data sintetis, asumsi kausal, GenAI scope
+- **Section 13**: semua section selesai pada full 100k tanpa error
 
 ---
 
