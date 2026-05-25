@@ -1,4 +1,4 @@
-# Explainable Machine Learning with Counterfactual Analysis for Stress Prediction and Intervention Using Sleep and Lifestyle Data
+# Explainable Machine Learning with Counterfactual Analysis and GenAI-based Naturalization for Stress Prediction and Intervention Using Sleep and Lifestyle Data
 
 ## 1. Pendahuluan
 
@@ -8,6 +8,8 @@ Namun, banyak model prediksi stres hanya berfokus pada akurasi prediksi tanpa me
 
 Oleh karena itu, penelitian ini mengembangkan pendekatan explainable dan actionable machine learning untuk memprediksi tingkat stres. Selain membangun model regresi untuk memprediksi `stress_score`, penelitian ini juga menggunakan metode Explainable AI, khususnya SHAP, untuk menjelaskan kontribusi fitur terhadap prediksi. Selanjutnya, pendekatan counterfactual analysis digunakan untuk menghasilkan rekomendasi perubahan gaya hidup yang lebih konkret dan dapat ditindaklanjuti.
 
+Meskipun SHAP dan counterfactual analysis sudah memberikan informasi yang lebih kaya dibandingkan prediksi tunggal, output keduanya tetap bersifat teknis dan numerik sehingga sulit dipahami oleh pengguna awam. Untuk mengatasi keterbatasan tersebut, penelitian ini menambahkan lapisan naturalisasi menggunakan Generative AI (GenAI), khususnya model GPT, untuk mengubah hasil counterfactual menjadi narasi rekomendasi sistem pakar yang empatik, kontekstual, dan mudah dipahami.
+
 ## 2. Rumusan Masalah
 
 Berdasarkan latar belakang tersebut, rumusan masalah dalam penelitian ini adalah sebagai berikut:
@@ -16,6 +18,7 @@ Berdasarkan latar belakang tersebut, rumusan masalah dalam penelitian ini adalah
 2. Faktor apa saja yang paling berpengaruh terhadap prediksi tingkat stres berdasarkan hasil Explainable AI?
 3. Bagaimana pendekatan counterfactual analysis dapat digunakan untuk memberikan rekomendasi intervensi yang spesifik dan realistis bagi individu?
 4. Bagaimana perbandingan performa model CatBoost, Random Forest, dan TabNet dalam memprediksi tingkat stres?
+5. Bagaimana hasil counterfactual dapat dinaturalisasi menjadi narasi rekomendasi sistem pakar yang mudah dipahami pengguna awam menggunakan GenAI?
 
 ## 3. Tujuan Penelitian
 
@@ -26,6 +29,7 @@ Penelitian ini bertujuan untuk:
 3. Menggunakan SHAP untuk menjelaskan faktor-faktor yang paling berpengaruh terhadap prediksi stres.
 4. Mengembangkan pendekatan counterfactual analysis untuk menghasilkan rekomendasi intervensi yang dapat ditindaklanjuti.
 5. Menyusun insight individual untuk kasus stres rendah, sedang, dan tinggi.
+6. Mengintegrasikan GenAI (GPT) untuk menaturalisasi hasil counterfactual menjadi narasi rekomendasi sistem pakar yang empatik dan kontekstual.
 
 ## 4. Gap Penelitian Sebelumnya
 
@@ -50,6 +54,10 @@ Penelitian ini membandingkan model berbasis pohon konvensional, yaitu CatBoost d
 ### 5.3 Personalisasi Intervensi
 
 Penelitian ini mengintegrasikan SHAP dan counterfactual analysis untuk memberikan rekomendasi yang tidak hanya didasarkan pada pola global, tetapi juga disesuaikan dengan kondisi individu. Dengan demikian, hasil penelitian diharapkan dapat menghasilkan insight yang lebih personal dan realistis.
+
+### 5.4 Naturalisasi Rekomendasi dengan GenAI
+
+Penelitian ini menambahkan lapisan naturalisasi berbasis Generative AI (GPT) yang mengubah hasil counterfactual yang masih berupa angka dan nama fitur teknis menjadi narasi rekomendasi sistem pakar dalam bahasa awam. Dengan demikian, rekomendasi yang dihasilkan tidak hanya akurat dan personal, tetapi juga mudah dipahami dan lebih siap untuk ditindaklanjuti oleh pengguna non-ahli. Pendekatan ini menjembatani gap antara output model machine learning yang teknis dengan kebutuhan komunikasi yang manusiawi dan empatik.
 
 ## 6. Dataset
 
@@ -154,6 +162,17 @@ Contoh bentuk rekomendasi counterfactual adalah:
 - Mengurangi `work_hours_that_day` apabila realistis.
 - Mengurangi `wake_episodes_per_night` melalui perbaikan kebiasaan tidur.
 
+### 9.7 Naturalisasi Rekomendasi dengan GenAI
+
+Output dari SHAP dan counterfactual analysis kemudian digunakan sebagai input untuk model Generative AI (GPT) yang berperan sebagai konselor kesehatan tidur dan manajemen stres. Tahapan ini meliputi:
+
+1. **Penyusunan prompt sistem pakar**: peran model didefinisikan sebagai konselor yang memberi saran berbasis data, dengan aturan ketat untuk hanya menggunakan fakta dari input (tidak berhalusinasi) dan menggunakan bahasa Indonesia yang mudah dipahami.
+2. **Konstruksi prompt pengguna**: prompt dibangun secara terstruktur dari profil individu, prediksi `stress_score`, top-5 kontribusi fitur dari SHAP, dan hasil counterfactual (fitur yang diubah beserta nilai sebelum dan sesudah).
+3. **Pemanggilan API dengan output JSON terstruktur**: model GPT dipanggil dengan parameter temperatur rendah untuk konsistensi, dan output dipaksa dalam format JSON yang memuat ringkasan kondisi, driver utama, langkah-langkah konkret, serta kalimat motivasi.
+4. **Integrasi pipeline**: narasi yang dihasilkan disajikan bersama hasil SHAP dan counterfactual sebagai satu paket rekomendasi yang lengkap, mulai dari prediksi hingga saran yang siap dibaca pengguna.
+
+Pengujian dan evaluasi terhadap output GenAI akan dibahas pada iterasi penelitian berikutnya.
+
 ## 10. Teknologi yang Digunakan
 
 | Tahapan | Teknologi |
@@ -163,6 +182,7 @@ Contoh bentuk rekomendasi counterfactual adalah:
 | Model Regresi | CatBoost, Random Forest, TabNet |
 | Explainable AI | SHAP TreeExplainer |
 | Counterfactual | DiCE / Custom Python Scenario |
+| GenAI Naturalisasi | OpenAI Python SDK, GPT-4o-mini, python-dotenv |
 
 ## 11. Skenario Evaluasi
 
@@ -187,7 +207,8 @@ Output yang diharapkan dari penelitian ini adalah:
 3. Visualisasi Explainable AI menggunakan SHAP untuk menjelaskan fitur yang paling berpengaruh.
 4. Penjelasan individual untuk kasus stres tinggi, sedang, dan rendah.
 5. Rekomendasi intervensi gaya hidup yang actionable dan berbasis data.
-6. Framework prediksi stres yang tidak hanya akurat, tetapi juga explainable dan prescriptive.
+6. Narasi rekomendasi sistem pakar berbasis GenAI yang empatik dan siap dipahami pengguna awam.
+7. Framework prediksi stres yang tidak hanya akurat, tetapi juga explainable, prescriptive, dan naturalized.
 
 ## 13. Kesimpulan Sementara
 
