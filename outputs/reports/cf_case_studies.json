@@ -1,1 +1,184 @@
-{}
+{
+  "low": {
+    "pos_in_test": 1111,
+    "actual": 3.0,
+    "orig_pred": 3.9243777803593147,
+    "cf_pred": 3.5667894972740646,
+    "cf_target": 3.624377780359315,
+    "delta": -0.35758828308525015,
+    "changes": [
+      {
+        "feature": "sleep_duration_hrs",
+        "before": 7.39,
+        "after": 9.63
+      },
+      {
+        "feature": "screen_time_before_bed_mins",
+        "before": 11.0,
+        "after": 151.0
+      },
+      {
+        "feature": "steps_that_day",
+        "before": 3836.0,
+        "after": 3721.0
+      },
+      {
+        "feature": "room_temperature_celsius",
+        "before": 21.6,
+        "after": 22.3
+      },
+      {
+        "feature": "sleep_aid_used",
+        "before": 0.0,
+        "after": 1.0
+      }
+    ],
+    "query": {
+      "age": 31,
+      "gender": "Male",
+      "occupation": "Homemaker",
+      "bmi": 26.7,
+      "country": "India",
+      "sleep_duration_hrs": 7.39,
+      "sleep_quality_score": 8.0,
+      "rem_percentage": 23.1,
+      "deep_sleep_percentage": 25.8,
+      "sleep_latency_mins": 10,
+      "wake_episodes_per_night": 3,
+      "caffeine_mg_before_bed": 0,
+      "alcohol_units_before_bed": 0.0,
+      "screen_time_before_bed_mins": 11,
+      "exercise_day": 0,
+      "steps_that_day": 3836,
+      "nap_duration_mins": 21,
+      "work_hours_that_day": 0.6,
+      "chronotype": "Neutral",
+      "mental_health_condition": "Healthy",
+      "heart_rate_resting_bpm": 76,
+      "sleep_aid_used": 0,
+      "shift_work": 0,
+      "room_temperature_celsius": 21.6,
+      "weekend_sleep_diff_hrs": -0.31,
+      "season": "Winter",
+      "day_type": "Weekend"
+    }
+  },
+  "mid": {
+    "pos_in_test": 9,
+    "actual": 6.0,
+    "orig_pred": 5.823651927905638,
+    "cf_pred": 5.747395455914901,
+    "cf_target": 5.773651927905638,
+    "delta": -0.07625647199073615,
+    "changes": [
+      {
+        "feature": "sleep_duration_hrs",
+        "before": 5.0,
+        "after": 5.32
+      },
+      {
+        "feature": "screen_time_before_bed_mins",
+        "before": 10.0,
+        "after": 27.0
+      },
+      {
+        "feature": "nap_duration_mins",
+        "before": 12.0,
+        "after": 0.0
+      },
+      {
+        "feature": "room_temperature_celsius",
+        "before": 18.3,
+        "after": 16.0
+      }
+    ],
+    "query": {
+      "age": 48,
+      "gender": "Female",
+      "occupation": "Driver",
+      "bmi": 31.2,
+      "country": "South Korea",
+      "sleep_duration_hrs": 5.0,
+      "sleep_quality_score": 5.0,
+      "rem_percentage": 20.0,
+      "deep_sleep_percentage": 20.1,
+      "sleep_latency_mins": 17,
+      "wake_episodes_per_night": 5,
+      "caffeine_mg_before_bed": 0,
+      "alcohol_units_before_bed": 0.0,
+      "screen_time_before_bed_mins": 10,
+      "exercise_day": 0,
+      "steps_that_day": 6757,
+      "nap_duration_mins": 12,
+      "work_hours_that_day": 9.7,
+      "chronotype": "Evening",
+      "mental_health_condition": "Healthy",
+      "heart_rate_resting_bpm": 68,
+      "sleep_aid_used": 0,
+      "shift_work": 0,
+      "room_temperature_celsius": 18.3,
+      "weekend_sleep_diff_hrs": 1.72,
+      "season": "Spring",
+      "day_type": "Weekday"
+    }
+  },
+  "high": {
+    "pos_in_test": 118,
+    "actual": 8.5,
+    "orig_pred": 8.325001890941978,
+    "cf_pred": 7.940389483247909,
+    "cf_target": 8.025001890941978,
+    "delta": -0.38461240769406935,
+    "changes": [
+      {
+        "feature": "sleep_duration_hrs",
+        "before": 6.18,
+        "after": 5.61
+      },
+      {
+        "feature": "screen_time_before_bed_mins",
+        "before": 76.0,
+        "after": 180.0
+      },
+      {
+        "feature": "alcohol_units_before_bed",
+        "before": 4.0,
+        "after": 0.0
+      },
+      {
+        "feature": "room_temperature_celsius",
+        "before": 19.6,
+        "after": 16.0
+      }
+    ],
+    "query": {
+      "age": 22,
+      "gender": "Female",
+      "occupation": "Doctor",
+      "bmi": 30.8,
+      "country": "Brazil",
+      "sleep_duration_hrs": 6.18,
+      "sleep_quality_score": 2.0,
+      "rem_percentage": 13.9,
+      "deep_sleep_percentage": 16.8,
+      "sleep_latency_mins": 37,
+      "wake_episodes_per_night": 5,
+      "caffeine_mg_before_bed": 200,
+      "alcohol_units_before_bed": 4.0,
+      "screen_time_before_bed_mins": 76,
+      "exercise_day": 0,
+      "steps_that_day": 2615,
+      "nap_duration_mins": 0,
+      "work_hours_that_day": 11.6,
+      "chronotype": "Evening",
+      "mental_health_condition": "Anxiety",
+      "heart_rate_resting_bpm": 76,
+      "sleep_aid_used": 0,
+      "shift_work": 0,
+      "room_temperature_celsius": 19.6,
+      "weekend_sleep_diff_hrs": 0.8,
+      "season": "Winter",
+      "day_type": "Weekday"
+    }
+  }
+}
