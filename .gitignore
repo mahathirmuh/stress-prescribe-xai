@@ -27,6 +27,9 @@ data/processed/
 # CatBoost training logs (auto-generated)
 catboost_info/
 
+# MS Office temporary lock files
+~$*
+
 # OS
 .DS_Store
 Thumbs.db
