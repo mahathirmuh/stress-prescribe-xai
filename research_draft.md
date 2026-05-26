@@ -88,7 +88,9 @@ Fitur yang digunakan dalam penelitian dikelompokkan ke dalam beberapa kategori u
 | Pekerjaan | `work_hours_that_day` |
 | Lingkungan | `room_temperature_celsius`, `season`, `day_type`, `chronotype` |
 
-Beberapa fitur dihapus untuk mencegah data leakage, yaitu:
+Beberapa fitur dihapus dalam dua tahap, dengan justifikasi metodologis yang berbeda.
+
+**Tahap 1 — Penghapusan untuk Mencegah Data Leakage:**
 
 | Fitur | Alasan Penghapusan |
 |---|---|
@@ -96,6 +98,21 @@ Beberapa fitur dihapus untuk mencegah data leakage, yaitu:
 | `cognitive_performance_score` | Co-outcome atau hasil, bukan prediktor |
 | `sleep_disorder_risk` | Co-outcome atau label kondisi lain |
 | `felt_rested` | Sangat dekat dengan kondisi hasil akhir |
+
+**Tahap 2 — Penghapusan untuk Causal Soundness (Behavior-Only Feature Set):**
+
+Penelitian ini juga mengecualikan fitur outcome fisiologis dari training set. Meskipun memiliki korelasi kuat dengan `stress_score`, fitur-fitur ini merupakan **gejala/hasil** dari behavior tidur, bukan **kausa yang dapat dimanipulasi** oleh pengguna secara langsung. Pengecualian ini mendukung integritas tahap *intervention* via counterfactual analysis.
+
+| Fitur | Alasan Penghapusan |
+|---|---|
+| `sleep_quality_score` | Outcome subjektif kualitas tidur (r = -0.639 dengan target) |
+| `rem_percentage` | Outcome fisiologis tidur, diukur via wearable/PSG |
+| `wake_episodes_per_night` | Gejala gangguan tidur, bukan behavior |
+| `sleep_latency_mins` | Outcome (waktu yang dibutuhkan untuk tertidur) |
+| `deep_sleep_percentage` | Outcome fisiologis tidur |
+| `heart_rate_resting_bpm` | Outcome fisiologis (state), bukan behavior |
+
+Trade-off pendekatan ini dibahas di Section 12.6 (Limitations).
 
 ## 8. Eksplorasi Awal Dataset
 
@@ -115,7 +132,9 @@ Tahap eksplorasi dilakukan untuk memahami struktur dataset, distribusi target, s
 
 ### 9.2 Preprocessing
 
-Preprocessing dilakukan dengan memilih fitur input yang relevan, menghapus fitur yang berpotensi menyebabkan data leakage, melakukan encoding pada variabel kategorikal, serta melakukan normalisasi apabila diperlukan. Setelah seleksi fitur, digunakan 27 fitur input untuk proses pemodelan.
+Preprocessing dilakukan dalam beberapa tahap. Pertama, dilakukan penghapusan fitur dalam dua kategori: (1) fitur leakage yang terlalu dekat dengan target, dan (2) fitur outcome fisiologis yang merupakan gejala/hasil dari behavior, bukan kausa yang dapat dimanipulasi (lihat Section 7 untuk daftar lengkap). Pengecualian outcome features ini merupakan **methodological choice** untuk menjamin causal soundness pada tahap counterfactual analysis: rekomendasi intervensi hanya bermakna jika fitur yang dimanipulasi adalah *manipulable causes*, bukan outcomes.
+
+Setelah seleksi fitur, dilakukan encoding pada variabel kategorikal serta normalisasi (StandardScaler) untuk model yang membutuhkan input numerik tertentu (Random Forest dan TabNet). Dua versi data disiapkan: **Versi A** dengan kategorikal mentah untuk CatBoost yang native-supports cat_features, dan **Versi B** dengan encoded + scaled untuk RF/TabNet. Final feature count untuk pemodelan adalah **21 fitur input** (32 kolom awal − 1 target − 4 leakage − 6 outcome).
 
 ### 9.3 Pembagian Data
 
