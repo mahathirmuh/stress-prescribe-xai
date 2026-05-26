@@ -1,0 +1,32 @@
+{
+  "summary": "Saat ini, tingkat stres Anda berada di angka 7.21, yang menunjukkan adanya tekanan yang cukup tinggi dalam hidup Anda. Beberapa faktor yang berkontribusi terhadap stres ini termasuk durasi tidur dan kebiasaan sebelum tidur.",
+  "drivers": [
+    "Pekerjaan Anda sebagai pengacara dapat meningkatkan tingkat stres karena tuntutan dan tanggung jawab yang tinggi.",
+    "Durasi tidur Anda saat ini adalah 6.01 jam, yang mungkin tidak cukup untuk pemulihan yang optimal.",
+    "Waktu layar sebelum tidur yang cukup lama (102 menit) dapat mengganggu kualitas tidur Anda."
+  ],
+  "recommendations": [
+    {
+      "action": "Kurangi durasi tidur malam",
+      "target": "dari 6.01 jam menjadi 5.76 jam per malam",
+      "rationale": "Mengurangi durasi tidur dapat membantu Anda menyesuaikan pola tidur yang lebih baik."
+    },
+    {
+      "action": "Hilangkan waktu layar sebelum tidur",
+      "target": "dari 102 menit menjadi 0 menit",
+      "rationale": "Mengurangi waktu layar sebelum tidur dapat meningkatkan kualitas tidur Anda dan membantu meredakan stres."
+    },
+    {
+      "action": "Hilangkan konsumsi alkohol sebelum tidur",
+      "target": "dari 1.0 unit menjadi 0.0 unit",
+      "rationale": "Menghindari alkohol sebelum tidur dapat membantu Anda tidur lebih nyenyak dan mengurangi stres."
+    },
+    {
+      "action": "Tingkatkan suhu ruangan tidur",
+      "target": "dari 20.8 derajat Celsius menjadi 23.1 derajat Celsius",
+      "rationale": "Meningkatkan suhu ruangan tidur dapat menciptakan lingkungan yang lebih nyaman untuk tidur."
+    }
+  ],
+  "encouragement": "Perubahan kecil dalam kebiasaan tidur dan lingkungan Anda dapat memberikan dampak positif. Ingatlah bahwa setiap langkah menuju perbaikan adalah pencapaian yang berarti.",
+  "disclaimer": "Rekomendasi ini bersifat informatif berdasarkan pola data penelitian. Untuk kondisi medis, konsultasikan dengan profesional kesehatan."
+}

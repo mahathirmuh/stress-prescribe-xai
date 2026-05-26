@@ -1,183 +1,188 @@
 {
   "low": {
-    "pos_in_test": 1111,
+    "pos_in_test": 140,
     "actual": 3.0,
-    "orig_pred": 3.9243777803593147,
-    "cf_pred": 3.5667894972740646,
-    "cf_target": 3.624377780359315,
-    "delta": -0.35758828308525015,
+    "orig_pred": 4.054829681083861,
+    "cf_pred": 3.8456501985252523,
+    "cf_target": 3.904829681083861,
+    "delta": -0.20917948255860885,
     "changes": [
       {
         "feature": "sleep_duration_hrs",
-        "before": 7.39,
-        "after": 9.63
+        "before": 6.08,
+        "after": 7.78
       },
       {
         "feature": "screen_time_before_bed_mins",
-        "before": 11.0,
-        "after": 151.0
+        "before": 29.0,
+        "after": 30.0
       },
       {
         "feature": "steps_that_day",
-        "before": 3836.0,
-        "after": 3721.0
+        "before": 13046.0,
+        "after": 1000.0
       },
       {
         "feature": "room_temperature_celsius",
-        "before": 21.6,
-        "after": 22.3
-      },
-      {
-        "feature": "sleep_aid_used",
-        "before": 0.0,
-        "after": 1.0
-      }
-    ],
-    "query": {
-      "age": 31,
-      "gender": "Male",
-      "occupation": "Homemaker",
-      "bmi": 26.7,
-      "country": "India",
-      "sleep_duration_hrs": 7.39,
-      "sleep_quality_score": 8.0,
-      "rem_percentage": 23.1,
-      "deep_sleep_percentage": 25.8,
-      "sleep_latency_mins": 10,
-      "wake_episodes_per_night": 3,
-      "caffeine_mg_before_bed": 0,
-      "alcohol_units_before_bed": 0.0,
-      "screen_time_before_bed_mins": 11,
-      "exercise_day": 0,
-      "steps_that_day": 3836,
-      "nap_duration_mins": 21,
-      "work_hours_that_day": 0.6,
-      "chronotype": "Neutral",
-      "mental_health_condition": "Healthy",
-      "heart_rate_resting_bpm": 76,
-      "sleep_aid_used": 0,
-      "shift_work": 0,
-      "room_temperature_celsius": 21.6,
-      "weekend_sleep_diff_hrs": -0.31,
-      "season": "Winter",
-      "day_type": "Weekend"
-    }
-  },
-  "mid": {
-    "pos_in_test": 9,
-    "actual": 6.0,
-    "orig_pred": 5.823651927905638,
-    "cf_pred": 5.747395455914901,
-    "cf_target": 5.773651927905638,
-    "delta": -0.07625647199073615,
-    "changes": [
-      {
-        "feature": "sleep_duration_hrs",
-        "before": 5.0,
-        "after": 5.32
-      },
-      {
-        "feature": "screen_time_before_bed_mins",
-        "before": 10.0,
-        "after": 27.0
-      },
-      {
-        "feature": "nap_duration_mins",
-        "before": 12.0,
-        "after": 0.0
-      },
-      {
-        "feature": "room_temperature_celsius",
-        "before": 18.3,
+        "before": 17.2,
         "after": 16.0
       }
     ],
     "query": {
-      "age": 48,
+      "age": 20,
       "gender": "Female",
-      "occupation": "Driver",
-      "bmi": 31.2,
-      "country": "South Korea",
-      "sleep_duration_hrs": 5.0,
-      "sleep_quality_score": 5.0,
-      "rem_percentage": 20.0,
-      "deep_sleep_percentage": 20.1,
-      "sleep_latency_mins": 17,
-      "wake_episodes_per_night": 5,
+      "occupation": "Homemaker",
+      "bmi": 22.5,
+      "country": "Canada",
+      "sleep_duration_hrs": 6.08,
+      "sleep_quality_score": 7.6,
+      "rem_percentage": 21.6,
+      "deep_sleep_percentage": 26.7,
+      "sleep_latency_mins": 15,
+      "wake_episodes_per_night": 1,
       "caffeine_mg_before_bed": 0,
       "alcohol_units_before_bed": 0.0,
-      "screen_time_before_bed_mins": 10,
-      "exercise_day": 0,
-      "steps_that_day": 6757,
-      "nap_duration_mins": 12,
-      "work_hours_that_day": 9.7,
-      "chronotype": "Evening",
+      "screen_time_before_bed_mins": 29,
+      "exercise_day": 1,
+      "steps_that_day": 13046,
+      "nap_duration_mins": 0,
+      "work_hours_that_day": 6.5,
+      "chronotype": "Neutral",
       "mental_health_condition": "Healthy",
-      "heart_rate_resting_bpm": 68,
+      "heart_rate_resting_bpm": 57,
       "sleep_aid_used": 0,
       "shift_work": 0,
-      "room_temperature_celsius": 18.3,
-      "weekend_sleep_diff_hrs": 1.72,
-      "season": "Spring",
+      "room_temperature_celsius": 17.2,
+      "weekend_sleep_diff_hrs": 0.03,
+      "season": "Autumn",
+      "day_type": "Weekday"
+    }
+  },
+  "mid": {
+    "pos_in_test": 8,
+    "actual": 6.0,
+    "orig_pred": 5.2536368672330624,
+    "cf_pred": 4.952870681841439,
+    "cf_target": 4.953636867233063,
+    "delta": -0.30076618539162325,
+    "changes": [
+      {
+        "feature": "sleep_duration_hrs",
+        "before": 6.86,
+        "after": 5.79
+      },
+      {
+        "feature": "screen_time_before_bed_mins",
+        "before": 145.0,
+        "after": 0.0
+      },
+      {
+        "feature": "caffeine_mg_before_bed",
+        "before": 100.0,
+        "after": 40.0
+      },
+      {
+        "feature": "steps_that_day",
+        "before": 7156.0,
+        "after": 1000.0
+      },
+      {
+        "feature": "nap_duration_mins",
+        "before": 0.0,
+        "after": 29.0
+      },
+      {
+        "feature": "room_temperature_celsius",
+        "before": 24.0,
+        "after": 25.5
+      }
+    ],
+    "query": {
+      "age": 29,
+      "gender": "Male",
+      "occupation": "Sales",
+      "bmi": 24.4,
+      "country": "Canada",
+      "sleep_duration_hrs": 6.86,
+      "sleep_quality_score": 5.6,
+      "rem_percentage": 18.9,
+      "deep_sleep_percentage": 29.6,
+      "sleep_latency_mins": 24,
+      "wake_episodes_per_night": 0,
+      "caffeine_mg_before_bed": 100,
+      "alcohol_units_before_bed": 0.0,
+      "screen_time_before_bed_mins": 145,
+      "exercise_day": 1,
+      "steps_that_day": 7156,
+      "nap_duration_mins": 0,
+      "work_hours_that_day": 7.0,
+      "chronotype": "Neutral",
+      "mental_health_condition": "Healthy",
+      "heart_rate_resting_bpm": 76,
+      "sleep_aid_used": 1,
+      "shift_work": 0,
+      "room_temperature_celsius": 24.0,
+      "weekend_sleep_diff_hrs": 1.4,
+      "season": "Summer",
       "day_type": "Weekday"
     }
   },
   "high": {
-    "pos_in_test": 118,
+    "pos_in_test": 97,
     "actual": 8.5,
-    "orig_pred": 8.325001890941978,
-    "cf_pred": 7.940389483247909,
-    "cf_target": 8.025001890941978,
-    "delta": -0.38461240769406935,
+    "orig_pred": 7.213796556748421,
+    "cf_pred": 6.836856917286688,
+    "cf_target": 6.913796556748421,
+    "delta": -0.3769396394617326,
     "changes": [
       {
         "feature": "sleep_duration_hrs",
-        "before": 6.18,
-        "after": 5.61
+        "before": 6.01,
+        "after": 5.76
       },
       {
         "feature": "screen_time_before_bed_mins",
-        "before": 76.0,
-        "after": 180.0
+        "before": 102.0,
+        "after": 0.0
       },
       {
         "feature": "alcohol_units_before_bed",
-        "before": 4.0,
+        "before": 1.0,
         "after": 0.0
       },
       {
         "feature": "room_temperature_celsius",
-        "before": 19.6,
-        "after": 16.0
+        "before": 20.8,
+        "after": 23.1
       }
     ],
     "query": {
-      "age": 22,
-      "gender": "Female",
-      "occupation": "Doctor",
-      "bmi": 30.8,
-      "country": "Brazil",
-      "sleep_duration_hrs": 6.18,
-      "sleep_quality_score": 2.0,
-      "rem_percentage": 13.9,
-      "deep_sleep_percentage": 16.8,
-      "sleep_latency_mins": 37,
-      "wake_episodes_per_night": 5,
-      "caffeine_mg_before_bed": 200,
-      "alcohol_units_before_bed": 4.0,
-      "screen_time_before_bed_mins": 76,
+      "age": 40,
+      "gender": "Male",
+      "occupation": "Lawyer",
+      "bmi": 21.7,
+      "country": "India",
+      "sleep_duration_hrs": 6.01,
+      "sleep_quality_score": 4.8,
+      "rem_percentage": 22.4,
+      "deep_sleep_percentage": 13.9,
+      "sleep_latency_mins": 17,
+      "wake_episodes_per_night": 2,
+      "caffeine_mg_before_bed": 0,
+      "alcohol_units_before_bed": 1.0,
+      "screen_time_before_bed_mins": 102,
       "exercise_day": 0,
-      "steps_that_day": 2615,
-      "nap_duration_mins": 0,
-      "work_hours_that_day": 11.6,
-      "chronotype": "Evening",
-      "mental_health_condition": "Anxiety",
-      "heart_rate_resting_bpm": 76,
-      "sleep_aid_used": 0,
+      "steps_that_day": 3365,
+      "nap_duration_mins": 9,
+      "work_hours_that_day": 11.8,
+      "chronotype": "Morning",
+      "mental_health_condition": "Healthy",
+      "heart_rate_resting_bpm": 57,
+      "sleep_aid_used": 1,
       "shift_work": 0,
-      "room_temperature_celsius": 19.6,
-      "weekend_sleep_diff_hrs": 0.8,
-      "season": "Winter",
+      "room_temperature_celsius": 20.8,
+      "weekend_sleep_diff_hrs": -0.2,
+      "season": "Summer",
       "day_type": "Weekday"
     }
   }

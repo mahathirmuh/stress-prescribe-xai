@@ -1,0 +1,42 @@
+{
+  "summary": "Saat ini, tingkat stres Anda berada di angka 5.25, yang menunjukkan adanya beberapa faktor yang dapat diperbaiki untuk membantu menurunkan stres Anda.",
+  "drivers": [
+    "Durasi tidur Anda saat ini adalah 6.86 jam, yang mungkin kurang optimal untuk pemulihan tubuh.",
+    "Waktu layar sebelum tidur yang mencapai 145 menit dapat mengganggu kualitas tidur Anda.",
+    "Konsumsi kafein sebelum tidur sebesar 100 mg dapat mempengaruhi kemampuan Anda untuk tidur nyenyak."
+  ],
+  "recommendations": [
+    {
+      "action": "Kurangi durasi tidur malam",
+      "target": "dari 6.86 jam menjadi 5.79 jam per malam",
+      "rationale": "Mengurangi durasi tidur dapat membantu Anda lebih fokus pada kualitas tidur yang lebih baik."
+    },
+    {
+      "action": "Hilangkan waktu layar sebelum tidur",
+      "target": "dari 145 menit menjadi 0 menit",
+      "rationale": "Mengurangi waktu layar sebelum tidur dapat meningkatkan kualitas tidur Anda."
+    },
+    {
+      "action": "Kurangi konsumsi kafein sebelum tidur",
+      "target": "dari 100 mg menjadi 40 mg",
+      "rationale": "Mengurangi kafein sebelum tidur dapat membantu Anda tidur lebih nyenyak."
+    },
+    {
+      "action": "Kurangi langkah yang diambil dalam sehari",
+      "target": "dari 7156 langkah menjadi 1000 langkah",
+      "rationale": "Mengurangi aktivitas fisik dapat membantu Anda lebih rileks menjelang tidur."
+    },
+    {
+      "action": "Perpanjang durasi tidur siang",
+      "target": "dari 0 menit menjadi 29 menit",
+      "rationale": "Menambah tidur siang dapat memberikan tambahan energi dan membantu mengurangi stres."
+    },
+    {
+      "action": "Tingkatkan suhu ruangan",
+      "target": "dari 24.0°C menjadi 25.5°C",
+      "rationale": "Meningkatkan suhu ruangan dapat menciptakan lingkungan tidur yang lebih nyaman."
+    }
+  ],
+  "encouragement": "Perubahan kecil dalam kebiasaan sehari-hari dapat membawa dampak besar bagi kesehatan dan kesejahteraan Anda. Cobalah untuk melakukannya secara bertahap dan lihat bagaimana perubahannya.",
+  "disclaimer": "Rekomendasi ini bersifat informatif berdasarkan pola data penelitian. Untuk kondisi medis, konsultasikan dengan profesional kesehatan."
+}

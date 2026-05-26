@@ -19,13 +19,13 @@ __pycache__/
 *.ipynb_checkpoints
 
 # Models & generated artifacts (besar, tidak perlu di-track)
-models/*.cbm
-models/*.pkl
-models/*.zip
-data/processed/
+# models/*.cbm
+# models/*.pkl
+# models/*.zip
+# data/processed/
 
 # CatBoost training logs (auto-generated)
-catboost_info/
+# catboost_info/
 
 # MS Office temporary lock files
 ~$*
@@ -39,5 +39,5 @@ Thumbs.db
 .idea/
 
 # Outputs (boleh di-track sebagian, tergantung kebutuhan)
-outputs/figures/*.png
-outputs/recommendations/*.json
+# outputs/figures/*.png
+# outputs/recommendations/*.json

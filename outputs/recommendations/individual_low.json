@@ -1,0 +1,32 @@
+{
+  "summary": "Saat ini, Anda memiliki tingkat stres yang cukup tinggi dengan skor 4.05. Ada beberapa area yang dapat diperbaiki untuk membantu menurunkan tingkat stres Anda.",
+  "drivers": [
+    "Durasi tidur Anda saat ini adalah 6.08 jam, yang dapat berkontribusi pada peningkatan stres.",
+    "Waktu layar sebelum tidur Anda adalah 29 menit, yang sedikit lebih tinggi dari yang disarankan.",
+    "Jumlah langkah yang Anda ambil dalam sehari sangat tinggi, tetapi mungkin perlu disesuaikan untuk keseimbangan yang lebih baik."
+  ],
+  "recommendations": [
+    {
+      "action": "Perpanjang durasi tidur malam",
+      "target": "dari 6.08 jam menjadi 7.78 jam per malam",
+      "rationale": "Menambah durasi tidur dapat membantu mengurangi tingkat stres dan meningkatkan kualitas hidup Anda."
+    },
+    {
+      "action": "Tingkatkan waktu layar sebelum tidur",
+      "target": "dari 29 menit menjadi 30 menit",
+      "rationale": "Sedikit menambah waktu layar sebelum tidur dapat membantu Anda bersantai lebih baik sebelum tidur."
+    },
+    {
+      "action": "Kurangi jumlah langkah harian",
+      "target": "dari 13046 langkah menjadi 1000 langkah",
+      "rationale": "Mengurangi jumlah langkah dapat membantu menghindari kelelahan dan memberikan waktu lebih untuk istirahat."
+    },
+    {
+      "action": "Turunkan suhu ruangan",
+      "target": "dari 17.2 derajat Celsius menjadi 16.0 derajat Celsius",
+      "rationale": "Suhu yang lebih rendah dapat menciptakan lingkungan tidur yang lebih nyaman dan mendukung kualitas tidur yang lebih baik."
+    }
+  ],
+  "encouragement": "Setiap langkah kecil yang Anda ambil dapat memberikan dampak positif pada kesejahteraan Anda. Ingatlah untuk memberi diri Anda waktu untuk beradaptasi dengan perubahan ini.",
+  "disclaimer": "Rekomendasi ini bersifat informatif berdasarkan pola data penelitian. Untuk kondisi medis, konsultasikan dengan profesional kesehatan."
+}
