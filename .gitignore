@@ -18,11 +18,12 @@ __pycache__/
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
-# Models & generated artifacts (besar, tidak perlu di-track)
-# models/*.cbm
-# models/*.pkl
-# models/*.zip
-# data/processed/
+# Large model artifacts (>5 MB) — too big for git, regenerable from notebook
+models/random_forest.pkl
+models/random_forest.zip
+data/processed/splits.pkl
+data/processed/splits.zip
+# Small models (catboost.cbm, tabnet.zip, encoders) tetap di-track untuk reproducibility
 
 # CatBoost training logs (auto-generated)
 # catboost_info/
