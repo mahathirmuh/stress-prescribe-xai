@@ -1,0 +1,11 @@
+,mean_abs_shap
+sleep_quality_score,0.5658900275726341
+occupation,0.5484243938022912
+sleep_duration_hrs,0.09405576913350044
+mental_health_condition,0.04904015052921113
+rem_percentage,0.047375295308039196
+wake_episodes_per_night,0.0450427606171547
+heart_rate_resting_bpm,0.04268697278256212
+deep_sleep_percentage,0.04136630374510504
+day_type,0.04051588057128751
+room_temperature_celsius,0.033808932560593356

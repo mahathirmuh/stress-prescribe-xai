@@ -24,6 +24,9 @@ models/*.pkl
 models/*.zip
 data/processed/
 
+# CatBoost training logs (auto-generated)
+catboost_info/
+
 # OS
 .DS_Store
 Thumbs.db
