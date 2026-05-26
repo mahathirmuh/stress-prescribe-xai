@@ -47,6 +47,8 @@ Penelitian ini memiliki beberapa unsur keterbaruan sebagai berikut:
 
 Penelitian ini tidak hanya berfokus pada prediksi tingkat stres dan penjelasan faktor penyebabnya, tetapi juga menyediakan jalur intervensi konkret melalui counterfactual explanations. Dengan pendekatan ini, model dapat menunjukkan perubahan minimal pada fitur tertentu yang berpotensi menurunkan prediksi tingkat stres.
 
+Untuk menjamin **causal validity** rekomendasi, counterfactual analysis direstrik hanya pada **behavior features** (durasi tidur, screen time sebelum tidur, konsumsi kafein, aktivitas fisik, dll.) — *manipulable causes* yang dapat diubah pengguna secara langsung. Fitur *outcome* fisiologis (sleep quality, REM percentage, heart rate, dll.) dan fitur *immutable* (umur, gender, pekerjaan, dll.) di-lock dan tidak boleh diubah CF. Pendekatan ini menghasilkan rekomendasi yang **actionable secara causally honest**, meskipun magnitudo perubahan prediksi yang dapat dicapai lebih modest dibandingkan jika outcomes diizinkan berubah (lihat Section 12.6).
+
 ### 5.2 Arsitektur Hybrid
 
 Penelitian ini membandingkan model berbasis pohon konvensional, yaitu CatBoost dan Random Forest, dengan model deep learning khusus data tabular, yaitu TabNet. Perbandingan ini bertujuan untuk mengetahui model mana yang paling sesuai untuk prediksi stres berbasis data tidur dan gaya hidup.
@@ -88,9 +90,7 @@ Fitur yang digunakan dalam penelitian dikelompokkan ke dalam beberapa kategori u
 | Pekerjaan | `work_hours_that_day` |
 | Lingkungan | `room_temperature_celsius`, `season`, `day_type`, `chronotype` |
 
-Beberapa fitur dihapus dalam dua tahap, dengan justifikasi metodologis yang berbeda.
-
-**Tahap 1 — Penghapusan untuk Mencegah Data Leakage:**
+Beberapa fitur dihapus untuk mencegah data leakage, yaitu:
 
 | Fitur | Alasan Penghapusan |
 |---|---|
@@ -99,20 +99,7 @@ Beberapa fitur dihapus dalam dua tahap, dengan justifikasi metodologis yang berb
 | `sleep_disorder_risk` | Co-outcome atau label kondisi lain |
 | `felt_rested` | Sangat dekat dengan kondisi hasil akhir |
 
-**Tahap 2 — Penghapusan untuk Causal Soundness (Behavior-Only Feature Set):**
-
-Penelitian ini juga mengecualikan fitur outcome fisiologis dari training set. Meskipun memiliki korelasi kuat dengan `stress_score`, fitur-fitur ini merupakan **gejala/hasil** dari behavior tidur, bukan **kausa yang dapat dimanipulasi** oleh pengguna secara langsung. Pengecualian ini mendukung integritas tahap *intervention* via counterfactual analysis.
-
-| Fitur | Alasan Penghapusan |
-|---|---|
-| `sleep_quality_score` | Outcome subjektif kualitas tidur (r = -0.639 dengan target) |
-| `rem_percentage` | Outcome fisiologis tidur, diukur via wearable/PSG |
-| `wake_episodes_per_night` | Gejala gangguan tidur, bukan behavior |
-| `sleep_latency_mins` | Outcome (waktu yang dibutuhkan untuk tertidur) |
-| `deep_sleep_percentage` | Outcome fisiologis tidur |
-| `heart_rate_resting_bpm` | Outcome fisiologis (state), bukan behavior |
-
-Trade-off pendekatan ini dibahas di Section 12.6 (Limitations).
+**Catatan tentang outcome features**: Fitur seperti `sleep_quality_score`, `rem_percentage`, `wake_episodes_per_night`, `sleep_latency_mins`, `deep_sleep_percentage`, dan `heart_rate_resting_bpm` **tetap digunakan sebagai prediktor** karena memang predictive (mis. `sleep_quality_score` r = -0.639). Namun, fitur-fitur ini diklasifikasikan sebagai *outcomes* (gejala fisiologis, bukan behavior yang dapat dimanipulasi langsung) dan akan **di-lock di tahap counterfactual analysis** (Section 9) — DiCE hanya akan mengubah *behavior features*. Pendekatan ini memberi keseimbangan antara akurasi prediksi (R² tetap tinggi) dan causal soundness rekomendasi intervensi.
 
 ## 8. Eksplorasi Awal Dataset
 
@@ -132,9 +119,9 @@ Tahap eksplorasi dilakukan untuk memahami struktur dataset, distribusi target, s
 
 ### 9.2 Preprocessing
 
-Preprocessing dilakukan dalam beberapa tahap. Pertama, dilakukan penghapusan fitur dalam dua kategori: (1) fitur leakage yang terlalu dekat dengan target, dan (2) fitur outcome fisiologis yang merupakan gejala/hasil dari behavior, bukan kausa yang dapat dimanipulasi (lihat Section 7 untuk daftar lengkap). Pengecualian outcome features ini merupakan **methodological choice** untuk menjamin causal soundness pada tahap counterfactual analysis: rekomendasi intervensi hanya bermakna jika fitur yang dimanipulasi adalah *manipulable causes*, bukan outcomes.
+Preprocessing dilakukan dalam beberapa tahap. Pertama, dilakukan penghapusan fitur leakage yang terlalu dekat dengan target (`person_id`, `cognitive_performance_score`, `sleep_disorder_risk`, `felt_rested`). Outcome features fisiologis (`sleep_quality_score`, `rem_percentage`, `wake_episodes_per_night`, `sleep_latency_mins`, `deep_sleep_percentage`, `heart_rate_resting_bpm`) **tetap digunakan sebagai prediktor** karena memang predictive terhadap stress; causal soundness rekomendasi intervensi dijaga di tahap counterfactual (Section 9.6) dengan me-lock outcomes dan hanya mengubah behavior features.
 
-Setelah seleksi fitur, dilakukan encoding pada variabel kategorikal serta normalisasi (StandardScaler) untuk model yang membutuhkan input numerik tertentu (Random Forest dan TabNet). Dua versi data disiapkan: **Versi A** dengan kategorikal mentah untuk CatBoost yang native-supports cat_features, dan **Versi B** dengan encoded + scaled untuk RF/TabNet. Final feature count untuk pemodelan adalah **21 fitur input** (32 kolom awal − 1 target − 4 leakage − 6 outcome).
+Setelah seleksi fitur, dilakukan encoding pada variabel kategorikal serta normalisasi (StandardScaler) untuk model yang membutuhkan input numerik tertentu (Random Forest dan TabNet). Dua versi data disiapkan: **Versi A** dengan kategorikal mentah untuk CatBoost yang native-supports cat_features, dan **Versi B** dengan encoded + scaled untuk RF/TabNet. Final feature count untuk pemodelan adalah **27 fitur input** (32 kolom awal − 1 target − 4 leakage).
 
 ### 9.3 Pembagian Data
 
