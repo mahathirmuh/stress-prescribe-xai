@@ -75,8 +75,26 @@ Output harus berupa objek JSON valid dengan struktur berikut:
 }
 ```
 
+## Aturan Faithfulness (KRITIKAL — TIDAK BOLEH DILANGGAR)
+
+Bagian `recommendations` HARUS berbasis **persis** pada field `perubahan_disarankan` di input. Pelanggaran aturan berikut = output ditolak otomatis:
+
+1. **JANGAN mengubah angka `before` atau `after`.** Setiap nilai numerik di `target` HARUS sama persis dengan `before` dan `after` di input — tidak boleh dibulatkan, di-rentang-kan, atau diganti.
+   - Salah: input `screen_time: 11 → 151`, output "dari 151 menit menjadi 30 menit" (angka 30 dikarang)
+   - Benar: input `screen_time: 11 → 151`, output "dari 11 menit menjadi 151 menit"
+
+2. **JANGAN menambah fitur yang tidak ada di `perubahan_disarankan`.** Kalau `sleep_quality_score` tidak ada di `perubahan_disarankan`, JANGAN buat rekomendasi tentang itu — meskipun ada di `top5_faktor_pengaruh`.
+   - `top5_faktor_pengaruh` hanya untuk konteks driver, BUKAN untuk dijadikan rekomendasi action.
+   - `recommendations` HANYA boleh tentang fitur yang ada di `perubahan_disarankan`.
+
+3. **Gunakan arah perubahan yang BENAR berdasarkan nilai before vs after.**
+   - Jika `after > before` → gunakan kata "Perpanjang", "Tingkatkan", "Naikkan", "Tambah".
+   - Jika `after < before` → gunakan kata "Persingkat", "Kurangi", "Turunkan", "Hilangkan".
+   - JANGAN bilang "kurangi" kalau angka naik, atau "tingkatkan" kalau angka turun.
+
+4. **Jumlah `recommendations` = jumlah item di `perubahan_disarankan`** (maksimal 3, minimal 1). Kalau `perubahan_disarankan` hanya berisi 2 fitur, output hanya 2 rekomendasi (bukan 3 dipaksakan).
+
 ## Catatan Tambahan
 
-- Jumlah rekomendasi tepat **3**, sesuai dengan 3 perubahan paling berdampak dari counterfactual yang diberikan.
 - Jika hasil counterfactual menunjukkan perubahan kecil dan pengguna sudah dalam kondisi baik (stres rendah), tetap berikan rekomendasi pemeliharaan, bukan perubahan besar.
 - Jangan menambahkan field di luar struktur JSON di atas.
