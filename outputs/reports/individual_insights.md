@@ -16,17 +16,15 @@
 
 - **Actual stress_score**: 3.00
 - **Predicted**: 4.05
-- **CF target prediction**: 3.85 (Δ = -0.21)
+- **CF target prediction**: 3.89 (Δ = -0.17)
 
-**Perubahan disarankan (4 fitur):**
-- `sleep_duration_hrs`: 6.08 → 7.78
-- `screen_time_before_bed_mins`: 29.00 → 30.00
-- `steps_that_day`: 13046.00 → 1000.00
-- `room_temperature_celsius`: 17.20 → 16.00
+**Perubahan disarankan (2 fitur):**
+- `screen_time_before_bed_mins`: 29.00 → 0.00
+- `room_temperature_celsius`: 17.20 → 16.10
 
 **Narasi GenAI**:
 
-> Saat ini, Anda memiliki tingkat stres yang cukup tinggi dengan skor 4.05. Ada beberapa area yang dapat diperbaiki untuk membantu menurunkan tingkat stres Anda.
+> Saat ini, tingkat stres Anda berada di angka 4.05, yang menunjukkan adanya beberapa faktor yang dapat mempengaruhi kesejahteraan Anda.
 
 ---
 
@@ -34,19 +32,18 @@
 
 - **Actual stress_score**: 6.00
 - **Predicted**: 5.25
-- **CF target prediction**: 4.95 (Δ = -0.30)
+- **CF target prediction**: 4.90 (Δ = -0.36)
 
-**Perubahan disarankan (6 fitur):**
-- `sleep_duration_hrs`: 6.86 → 5.79
+**Perubahan disarankan (5 fitur):**
+- `sleep_duration_hrs`: 6.86 → 5.89
 - `screen_time_before_bed_mins`: 145.00 → 0.00
-- `caffeine_mg_before_bed`: 100.00 → 40.00
-- `steps_that_day`: 7156.00 → 1000.00
-- `nap_duration_mins`: 0.00 → 29.00
-- `room_temperature_celsius`: 24.00 → 25.50
+- `caffeine_mg_before_bed`: 100.00 → 0.00
+- `exercise_day`: 1.00 → 0.00
+- `room_temperature_celsius`: 24.00 → 16.00
 
 **Narasi GenAI**:
 
-> Saat ini, tingkat stres Anda berada di angka 5.25, yang menunjukkan adanya beberapa faktor yang dapat diperbaiki untuk membantu menurunkan stres Anda.
+> Saat ini, tingkat stres Anda berada di angka 5.25, yang menunjukkan adanya beberapa faktor yang dapat mempengaruhi kesejahteraan Anda. Ada beberapa kebiasaan yang dapat disesuaikan untuk membantu menurunkan stres Anda.
 
 ---
 
@@ -54,17 +51,17 @@
 
 - **Actual stress_score**: 8.50
 - **Predicted**: 7.21
-- **CF target prediction**: 6.84 (Δ = -0.38)
+- **CF target prediction**: 6.86 (Δ = -0.35)
 
 **Perubahan disarankan (4 fitur):**
-- `sleep_duration_hrs`: 6.01 → 5.76
-- `screen_time_before_bed_mins`: 102.00 → 0.00
+- `sleep_duration_hrs`: 6.01 → 8.38
+- `screen_time_before_bed_mins`: 102.00 → 98.00
 - `alcohol_units_before_bed`: 1.00 → 0.00
-- `room_temperature_celsius`: 20.80 → 23.10
+- `room_temperature_celsius`: 20.80 → 24.50
 
 **Narasi GenAI**:
 
-> Saat ini, tingkat stres Anda berada di angka 7.21, yang menunjukkan adanya tekanan yang cukup tinggi dalam hidup Anda. Beberapa faktor yang berkontribusi terhadap stres ini termasuk durasi tidur dan kebiasaan sebelum tidur.
+> Saat ini, Anda memiliki tingkat stres yang cukup tinggi dengan skor 7.21. Beberapa faktor yang berkontribusi terhadap stres Anda termasuk durasi tidur yang kurang dan waktu layar sebelum tidur yang cukup lama.
 
 ---
 

@@ -3,29 +3,19 @@
     "pos_in_test": 140,
     "actual": 3.0,
     "orig_pred": 4.054829681083861,
-    "cf_pred": 3.8456501985252523,
+    "cf_pred": 3.8851687498712977,
     "cf_target": 3.904829681083861,
-    "delta": -0.20917948255860885,
+    "delta": -0.16966093121256343,
     "changes": [
-      {
-        "feature": "sleep_duration_hrs",
-        "before": 6.08,
-        "after": 7.78
-      },
       {
         "feature": "screen_time_before_bed_mins",
         "before": 29.0,
-        "after": 30.0
-      },
-      {
-        "feature": "steps_that_day",
-        "before": 13046.0,
-        "after": 1000.0
+        "after": 0.0
       },
       {
         "feature": "room_temperature_celsius",
         "before": 17.2,
-        "after": 16.0
+        "after": 16.1
       }
     ],
     "query": {
@@ -62,14 +52,14 @@
     "pos_in_test": 8,
     "actual": 6.0,
     "orig_pred": 5.2536368672330624,
-    "cf_pred": 4.952870681841439,
+    "cf_pred": 4.897849534709234,
     "cf_target": 4.953636867233063,
-    "delta": -0.30076618539162325,
+    "delta": -0.3557873325238283,
     "changes": [
       {
         "feature": "sleep_duration_hrs",
         "before": 6.86,
-        "after": 5.79
+        "after": 5.89
       },
       {
         "feature": "screen_time_before_bed_mins",
@@ -79,22 +69,17 @@
       {
         "feature": "caffeine_mg_before_bed",
         "before": 100.0,
-        "after": 40.0
+        "after": 0.0
       },
       {
-        "feature": "steps_that_day",
-        "before": 7156.0,
-        "after": 1000.0
-      },
-      {
-        "feature": "nap_duration_mins",
-        "before": 0.0,
-        "after": 29.0
+        "feature": "exercise_day",
+        "before": 1.0,
+        "after": 0.0
       },
       {
         "feature": "room_temperature_celsius",
         "before": 24.0,
-        "after": 25.5
+        "after": 16.0
       }
     ],
     "query": {
@@ -131,19 +116,19 @@
     "pos_in_test": 97,
     "actual": 8.5,
     "orig_pred": 7.213796556748421,
-    "cf_pred": 6.836856917286688,
+    "cf_pred": 6.8588454666035865,
     "cf_target": 6.913796556748421,
-    "delta": -0.3769396394617326,
+    "delta": -0.3549510901448345,
     "changes": [
       {
         "feature": "sleep_duration_hrs",
         "before": 6.01,
-        "after": 5.76
+        "after": 8.38
       },
       {
         "feature": "screen_time_before_bed_mins",
         "before": 102.0,
-        "after": 0.0
+        "after": 98.0
       },
       {
         "feature": "alcohol_units_before_bed",
@@ -153,7 +138,7 @@
       {
         "feature": "room_temperature_celsius",
         "before": 20.8,
-        "after": 23.1
+        "after": 24.5
       }
     ],
     "query": {

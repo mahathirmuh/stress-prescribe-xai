@@ -1,32 +1,32 @@
 {
-  "summary": "Saat ini, tingkat stres Anda berada di angka 7.21, yang menunjukkan adanya tekanan yang cukup tinggi dalam hidup Anda. Beberapa faktor yang berkontribusi terhadap stres ini termasuk durasi tidur dan kebiasaan sebelum tidur.",
+  "summary": "Saat ini, Anda memiliki tingkat stres yang cukup tinggi dengan skor 7.21. Beberapa faktor yang berkontribusi terhadap stres Anda termasuk durasi tidur yang kurang dan waktu layar sebelum tidur yang cukup lama.",
   "drivers": [
-    "Pekerjaan Anda sebagai pengacara dapat meningkatkan tingkat stres karena tuntutan dan tanggung jawab yang tinggi.",
+    "Pekerjaan Anda sebagai pengacara dapat meningkatkan tingkat stres yang Anda alami.",
     "Durasi tidur Anda saat ini adalah 6.01 jam, yang mungkin tidak cukup untuk pemulihan yang optimal.",
-    "Waktu layar sebelum tidur yang cukup lama (102 menit) dapat mengganggu kualitas tidur Anda."
+    "Waktu layar sebelum tidur Anda adalah 102 menit, yang dapat mengganggu kualitas tidur Anda."
   ],
   "recommendations": [
     {
-      "action": "Kurangi durasi tidur malam",
-      "target": "dari 6.01 jam menjadi 5.76 jam per malam",
-      "rationale": "Mengurangi durasi tidur dapat membantu Anda menyesuaikan pola tidur yang lebih baik."
+      "action": "Perpanjang durasi tidur malam",
+      "target": "dari 6.01 jam menjadi 8.38 jam per malam",
+      "rationale": "Menambah durasi tidur dapat membantu Anda merasa lebih segar dan mengurangi tingkat stres."
     },
     {
-      "action": "Hilangkan waktu layar sebelum tidur",
-      "target": "dari 102 menit menjadi 0 menit",
-      "rationale": "Mengurangi waktu layar sebelum tidur dapat meningkatkan kualitas tidur Anda dan membantu meredakan stres."
+      "action": "Persingkat waktu layar sebelum tidur",
+      "target": "dari 102 menit menjadi 98 menit",
+      "rationale": "Mengurangi waktu layar sebelum tidur dapat membantu meningkatkan kualitas tidur Anda."
     },
     {
-      "action": "Hilangkan konsumsi alkohol sebelum tidur",
+      "action": "Kurangi konsumsi alkohol sebelum tidur",
       "target": "dari 1.0 unit menjadi 0.0 unit",
-      "rationale": "Menghindari alkohol sebelum tidur dapat membantu Anda tidur lebih nyenyak dan mengurangi stres."
+      "rationale": "Menghilangkan konsumsi alkohol sebelum tidur dapat membantu meningkatkan kualitas tidur dan mengurangi stres."
     },
     {
-      "action": "Tingkatkan suhu ruangan tidur",
-      "target": "dari 20.8 derajat Celsius menjadi 23.1 derajat Celsius",
-      "rationale": "Meningkatkan suhu ruangan tidur dapat menciptakan lingkungan yang lebih nyaman untuk tidur."
+      "action": "Tingkatkan suhu ruangan saat tidur",
+      "target": "dari 20.8°C menjadi 24.5°C",
+      "rationale": "Meningkatkan suhu ruangan dapat menciptakan lingkungan tidur yang lebih nyaman bagi Anda."
     }
   ],
-  "encouragement": "Perubahan kecil dalam kebiasaan tidur dan lingkungan Anda dapat memberikan dampak positif. Ingatlah bahwa setiap langkah menuju perbaikan adalah pencapaian yang berarti.",
+  "encouragement": "Perubahan kecil dalam kebiasaan tidur dan gaya hidup Anda dapat memberikan dampak yang signifikan. Luangkan waktu untuk mencoba rekomendasi ini dan lihat bagaimana perasaan Anda.",
   "disclaimer": "Rekomendasi ini bersifat informatif berdasarkan pola data penelitian. Untuk kondisi medis, konsultasikan dengan profesional kesehatan."
 }
