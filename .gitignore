@@ -31,10 +31,11 @@ data/processed/splits.zip
 # MS Office temporary lock files
 ~$*
 
-# PDF exports — biasanya di-regenerate dari DOCX, tidak perlu track tiap iterasi
-# Note: kk-ngebut_paper.pdf yang sudah committed sebelumnya tetap ter-track
-# (gitignore tidak hapus file yang sudah di-track)
+# Paper / slides / PDF artifacts — di-track dari source (notebook + research_draft.md),
+# tidak perlu commit binary office files
 *.pdf
+*.docx
+*.pptx
 
 # OS
 .DS_Store
