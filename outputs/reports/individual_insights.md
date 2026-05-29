@@ -16,15 +16,16 @@
 
 - **Actual stress_score**: 3.00
 - **Predicted**: 4.05
-- **CF target prediction**: 3.89 (Δ = -0.17)
+- **CF target prediction**: 3.89 (Δ = -0.16)
 
-**Perubahan disarankan (2 fitur):**
-- `screen_time_before_bed_mins`: 29.00 → 0.00
-- `room_temperature_celsius`: 17.20 → 16.10
+**Perubahan disarankan (3 fitur):**
+- `sleep_duration_hrs`: 6.08 → 4.00
+- `screen_time_before_bed_mins`: 29.00 → 37.00
+- `room_temperature_celsius`: 17.20 → 16.00
 
 **Narasi GenAI**:
 
-> Saat ini, tingkat stres Anda berada di angka 4.05, yang menunjukkan adanya beberapa faktor yang dapat mempengaruhi kesejahteraan Anda.
+> Saat ini, tingkat stres Anda berada di angka 4.05, yang menunjukkan adanya beberapa faktor yang dapat mempengaruhi kesejahteraan Anda. Ada beberapa kebiasaan yang bisa disesuaikan untuk membantu menurunkan stres Anda.
 
 ---
 
@@ -32,18 +33,18 @@
 
 - **Actual stress_score**: 6.00
 - **Predicted**: 5.25
-- **CF target prediction**: 4.90 (Δ = -0.36)
+- **CF target prediction**: 4.94 (Δ = -0.32)
 
 **Perubahan disarankan (5 fitur):**
 - `sleep_duration_hrs`: 6.86 → 5.89
-- `screen_time_before_bed_mins`: 145.00 → 0.00
-- `caffeine_mg_before_bed`: 100.00 → 0.00
+- `screen_time_before_bed_mins`: 145.00 → 111.00
 - `exercise_day`: 1.00 → 0.00
-- `room_temperature_celsius`: 24.00 → 16.00
+- `room_temperature_celsius`: 24.00 → 21.30
+- `sleep_aid_used`: 1.00 → 0.00
 
 **Narasi GenAI**:
 
-> Saat ini, tingkat stres Anda berada di angka 5.25, yang menunjukkan adanya beberapa faktor yang dapat mempengaruhi kesejahteraan Anda. Ada beberapa kebiasaan yang dapat disesuaikan untuk membantu menurunkan stres Anda.
+> Saat ini, tingkat stres Anda berada di angka 5.25, yang menunjukkan adanya beberapa faktor yang dapat diperbaiki dalam rutinitas harian Anda.
 
 ---
 
@@ -61,7 +62,7 @@
 
 **Narasi GenAI**:
 
-> Saat ini, Anda memiliki tingkat stres yang cukup tinggi dengan skor 7.21. Beberapa faktor yang berkontribusi terhadap stres Anda termasuk durasi tidur yang kurang dan waktu layar sebelum tidur yang cukup lama.
+> Saat ini, Anda memiliki tingkat stres yang cukup tinggi dengan skor 7.21. Ada beberapa faktor yang berkontribusi terhadap stres ini, termasuk durasi tidur yang kurang dan waktu layar sebelum tidur yang cukup lama.
 
 ---
 

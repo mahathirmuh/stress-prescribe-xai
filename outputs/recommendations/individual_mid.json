@@ -1,37 +1,37 @@
 {
-  "summary": "Saat ini, tingkat stres Anda berada di angka 5.25, yang menunjukkan adanya beberapa faktor yang dapat mempengaruhi kesejahteraan Anda. Ada beberapa kebiasaan yang dapat disesuaikan untuk membantu menurunkan stres Anda.",
+  "summary": "Saat ini, tingkat stres Anda berada di angka 5.25, yang menunjukkan adanya beberapa faktor yang dapat diperbaiki dalam rutinitas harian Anda.",
   "drivers": [
-    "Durasi tidur Anda saat ini adalah 6.86 jam, yang mungkin kurang ideal untuk pemulihan yang optimal.",
-    "Waktu layar sebelum tidur mencapai 145 menit, yang dapat mengganggu kualitas tidur Anda.",
-    "Konsumsi kafein sebelum tidur sebesar 100 mg juga dapat mempengaruhi kemampuan Anda untuk tidur nyenyak."
+    "Durasi tidur Anda saat ini adalah 6.86 jam, yang bisa dipersingkat untuk membantu menurunkan stres.",
+    "Waktu layar sebelum tidur Anda cukup tinggi, yaitu 145 menit, yang dapat mempengaruhi kualitas tidur.",
+    "Frekuensi olahraga Anda yang hanya 1 kali seminggu dapat berkontribusi pada tingkat stres yang lebih tinggi."
   ],
   "recommendations": [
     {
       "action": "Persingkat durasi tidur malam",
       "target": "dari 6.86 jam menjadi 5.89 jam per malam",
-      "rationale": "Meskipun durasi tidur Anda disarankan untuk dipersingkat, penting untuk memastikan kualitas tidur tetap terjaga."
+      "rationale": "Mengurangi durasi tidur dapat membantu Anda menyesuaikan pola tidur yang lebih baik."
     },
     {
       "action": "Kurangi waktu layar sebelum tidur",
-      "target": "dari 145 menit menjadi 0 menit",
-      "rationale": "Mengurangi waktu layar sebelum tidur dapat membantu meningkatkan kualitas tidur Anda dan mengurangi stres."
+      "target": "dari 145 menit menjadi 111 menit",
+      "rationale": "Mengurangi waktu layar dapat meningkatkan kualitas tidur Anda."
     },
     {
-      "action": "Kurangi konsumsi kafein sebelum tidur",
-      "target": "dari 100 mg menjadi 0 mg",
-      "rationale": "Menghilangkan kafein sebelum tidur dapat membantu Anda tidur lebih nyenyak dan merasa lebih segar di pagi hari."
-    },
-    {
-      "action": "Kurangi frekuensi olahraga harian",
-      "target": "dari 1 kali menjadi 0 kali",
-      "rationale": "Meskipun olahraga umumnya baik, mengurangi frekuensi saat ini mungkin membantu Anda menemukan keseimbangan yang lebih baik."
+      "action": "Turunkan frekuensi olahraga",
+      "target": "dari 1 kali menjadi 0 kali per minggu",
+      "rationale": "Menyesuaikan frekuensi olahraga dapat membantu Anda lebih fokus pada kebiasaan lain yang mendukung kesehatan mental."
     },
     {
       "action": "Turunkan suhu ruangan saat tidur",
-      "target": "dari 24.0 derajat Celsius menjadi 16.0 derajat Celsius",
-      "rationale": "Suhu ruangan yang lebih rendah dapat menciptakan lingkungan tidur yang lebih nyaman dan mendukung kualitas tidur yang lebih baik."
+      "target": "dari 24.0 derajat Celsius menjadi 21.3 derajat Celsius",
+      "rationale": "Suhu ruangan yang lebih rendah dapat meningkatkan kenyamanan tidur Anda."
+    },
+    {
+      "action": "Hilangkan penggunaan bantuan tidur",
+      "target": "dari 1 kali menjadi 0 kali",
+      "rationale": "Mengurangi penggunaan bantuan tidur dapat membantu Anda tidur lebih alami."
     }
   ],
-  "encouragement": "Perubahan kecil dalam kebiasaan harian Anda dapat membawa dampak positif bagi kesehatan mental dan fisik Anda. Cobalah untuk melakukannya secara bertahap dan lihat bagaimana perasaan Anda.",
+  "encouragement": "Perubahan kecil dalam rutinitas harian Anda dapat membawa dampak positif. Setiap langkah yang Anda ambil menuju kebiasaan yang lebih sehat adalah langkah yang berarti.",
   "disclaimer": "Rekomendasi ini bersifat informatif berdasarkan pola data penelitian. Untuk kondisi medis, konsultasikan dengan profesional kesehatan."
 }
