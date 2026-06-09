@@ -80,7 +80,7 @@ FONT_SB= "Segoe UI Semibold"
 
 EMW, EMH = Inches(13.333), Inches(7.5)
 PW = 13.333
-TOTAL = 17
+TOTAL = 18
 
 prs = Presentation()
 prs.slide_width  = EMW
@@ -547,7 +547,56 @@ notes(s,
 "sleep medicine, bukan pola spurious.")
 
 # ============================================================================
-# SLIDE 9 — Stage 2: SHAP local (waterfall)
+# SLIDE 9 — Case Studies: meet three individuals (intro)
+# ============================================================================
+s = new_slide()
+header(s, "Case Studies — Three Individuals", "Stage 2 · Explain", TEAL)
+tb(s, 0.9, 1.6, 11.6, 0.4,
+   "The same three people are tracked through SHAP, counterfactuals, and the final GenAI narrative",
+   13.5, MUTE, italic=True)
+profiles = [
+    ("LOW STRESS",  BLUE,  "3.0", "4.05",
+     [("Age","20"), ("Gender","Female"), ("Job","Homemaker"),
+      ("Sleep","6.08 h"), ("Quality","7.6 / 10"), ("Screen","29 min")]),
+    ("MID STRESS",  AMBER, "6.0", "5.25",
+     [("Age","29"), ("Gender","Male"), ("Job","Sales"),
+      ("Sleep","6.86 h"), ("Quality","5.6 / 10"), ("Screen","145 min")]),
+    ("HIGH STRESS", RED,   "8.5", "7.21",
+     [("Age","40"), ("Gender","Male"), ("Job","Lawyer"),
+      ("Sleep","6.01 h"), ("Quality","4.8 / 10"), ("Screen","102 min")]),
+]
+cw = 3.85; gap = (12.23 - 3*cw) / 2; x0 = 0.55; cy = 2.05; ch = 4.35
+for i, (name, col, actual, pred, rows) in enumerate(profiles):
+    cx = x0 + i * (cw + gap)
+    fill_rect(s, cx, cy, cw, ch, WHITE, shape=MSO_SHAPE.ROUNDED_RECTANGLE,
+              radius=0.04, line_color=LINE, line_w=1.0)
+    fill_rect(s, cx, cy, cw, 0.92, col, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.07)
+    tb(s, cx, cy+0.16, cw, 0.4, name, 16, WHITE, bold=True, align=PP_ALIGN.CENTER, font=FONT_SB)
+    tb(s, cx, cy+0.55, cw, 0.3, f"actual stress {actual}", 11.5, RGBColor(0xF2,0xF5,0xFF),
+       align=PP_ALIGN.CENTER)
+    ry = cy + 1.18
+    for lab, val in rows:
+        tb(s, cx+0.32, ry, 1.5, 0.32, lab, 11, MUTE)
+        tb(s, cx+cw-2.07, ry, 1.75, 0.32, val, 12.5, INK, bold=True, align=PP_ALIGN.RIGHT)
+        ry += 0.44
+    fill_rect(s, cx+0.32, ry+0.04, cw-0.64, 0.015, LINE)
+    tb(s, cx+0.32, ry+0.14, cw-0.64, 0.3, f"model predicted  {pred}", 11, col, bold=True,
+       align=PP_ALIGN.CENTER)
+callout(s, 0.55, 6.5, 12.23, 0.42,
+        "as actual stress rises (3.0 → 6.0 → 8.5), sleep quality falls (7.6 → 5.6 → 4.8) — exactly the pattern SHAP confirms next.",
+        accent=PURPLE, fill=RGBColor(0xF3,0xEE,0xFB), bold_lead="Notice:  ", size=11.5)
+notes(s,
+"Sebelum masuk ke penjelasan SHAP per individu, izinkan saya memperkenalkan tiga studi kasus "
+"yang akan kita ikuti dari awal sampai akhir pipeline. Individu LOW: perempuan 20 tahun, ibu "
+"rumah tangga, tidur 6 jam dengan kualitas tinggi 7,6 — stres aktual rendah, 3,0. Individu MID: "
+"laki-laki 29 tahun, sales, tidur 6,9 jam tapi kualitas turun ke 5,6 dan screen time tinggi 145 "
+"menit — stres 6,0. Individu HIGH: laki-laki 40 tahun, pengacara, tidur hanya 6 jam dengan "
+"kualitas terendah 4,8 — stres tinggi 8,5. Perhatikan polanya: makin tinggi stres, makin rendah "
+"kualitas tidur. Ketiga orang ini akan kita jelaskan dengan SHAP di slide berikutnya, lalu kita "
+"carikan rekomendasi lewat counterfactual, dan akhirnya diubah jadi narasi oleh GenAI.")
+
+# ============================================================================
+# SLIDE 10 — Stage 2: SHAP local (waterfall)
 # ============================================================================
 s = new_slide()
 header(s, "Stage 2 — SHAP Local Explanations", "Stage 2 · Explain", TEAL)
@@ -574,7 +623,7 @@ notes(s,
 "berkontribusi sebelum mencari perubahan minimal untuk menurunkannya.")
 
 # ============================================================================
-# SLIDE 10 — Stage 3: DiCE Counterfactual Setup
+# SLIDE 11 — Stage 3: DiCE Counterfactual Setup
 # ============================================================================
 s = new_slide()
 header(s, "Stage 3 — DiCE Counterfactual Setup", "Stage 3 · Prescribe", AMBER)
@@ -614,7 +663,7 @@ notes(s,
 "sesuai FDA. Kami evaluasi 5 metrik: validity, proximity, sparsity, diversity, plausibility.")
 
 # ============================================================================
-# SLIDE 11 — Stage 3: Counterfactual Quality Results
+# SLIDE 12 — Stage 3: Counterfactual Quality Results
 # ============================================================================
 s = new_slide()
 header(s, "Counterfactual Quality Results", "Stage 3 · Prescribe", AMBER)
@@ -648,7 +697,7 @@ notes(s,
 "validity versus success rate.")
 
 # ============================================================================
-# SLIDE 12 — Ablation Study: Outcome Locking (NEW)
+# SLIDE 13 — Ablation Study: Outcome Locking
 # ============================================================================
 s = new_slide()
 header(s, "Ablation Study — Outcome Locking", "Stage 3 · Key finding", PURPLE)
@@ -681,7 +730,7 @@ notes(s,
 "restriksi causal kami memang diperlukan, bukan sekadar pilihan desain.")
 
 # ============================================================================
-# SLIDE 13 — Stage 4: GenAI Naturalization
+# SLIDE 14 — Stage 4: GenAI Naturalization
 # ============================================================================
 s = new_slide()
 header(s, "Stage 4 — GenAI Naturalization", "Stage 4 · Naturalize", PURPLE)
@@ -734,7 +783,7 @@ notes(s,
 "tiga kali sebelum fallback.")
 
 # ============================================================================
-# SLIDE 14 — Case Study Narratives
+# SLIDE 15 — Case Study Narratives
 # ============================================================================
 s = new_slide()
 header(s, "Case Study Narratives", "Results · Case studies", PURPLE)
@@ -784,7 +833,7 @@ notes(s,
 "muncul sebagai action.")
 
 # ============================================================================
-# SLIDE 15 — Limitations & Threats to Validity
+# SLIDE 16 — Limitations & Threats to Validity
 # ============================================================================
 s = new_slide()
 header(s, "Limitations & Threats to Validity", "Limitations", RED)
@@ -817,7 +866,7 @@ notes(s,
 "regex membantu, tapi untuk publikasi sebaiknya ditambah faithfulness scoring berbasis NLI.")
 
 # ============================================================================
-# SLIDE 16 — Conclusion
+# SLIDE 17 — Conclusion
 # ============================================================================
 s = new_slide()
 header(s, "Conclusion", "Conclusion", TEAL)
@@ -854,7 +903,7 @@ notes(s,
 "lanjutan di setting klinis, wearable, atau longitudinal.")
 
 # ============================================================================
-# SLIDE 17 — Thank You / Q&A
+# SLIDE 18 — Thank You / Q&A
 # ============================================================================
 s = new_slide()
 bg(s, NAVY)
