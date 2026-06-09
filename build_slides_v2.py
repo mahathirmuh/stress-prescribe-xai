@@ -246,7 +246,7 @@ tb(s, 1.0, 3.45, 11.3, 0.9,
    19, ICE, italic=True, ls=1.05)
 fill_rect(s, 1.0, 4.55, 4.2, 0.03, BLUE)
 tb(s, 1.0, 4.78, 11.3, 0.55,
-   "Ananta Dwi Prayoga Alwy   ·   Dhayu Intan Nareswari   ·   Mahathir Muhammad   ·   Obi Kastanya",
+   "Obi Kastanya   ·   Dhayu Intan Nareswari   ·   Ananta Dwi Prayoga Alwy   ·   Mahathir Muhammad",
    14.5, WHITE, bold=True)
 tb(s, 1.0, 5.28, 11.3, 0.7,
    "Department of Informatics, Faculty of Intelligent Electrical and Informatics Technology\n"
@@ -863,7 +863,7 @@ tb(s, 1.0, 2.55, 11.3, 1.0, "Thank You", 54, WHITE, bold=True, font=FONT_SB)
 fill_rect(s, 1.05, 3.75, 3.4, 0.04, BLUE)
 tb(s, 1.0, 4.0, 11.3, 0.5, "Questions & Discussion are welcome", 18, ICE, italic=True)
 tb(s, 1.0, 4.85, 11.3, 1.0,
-   "Ananta Dwi Prayoga Alwy  ·  Dhayu Intan Nareswari  ·  Mahathir Muhammad  ·  Obi Kastanya",
+   "Obi Kastanya  ·  Dhayu Intan Nareswari  ·  Ananta Dwi Prayoga Alwy  ·  Mahathir Muhammad",
    13.5, RGBColor(0xB9,0xC6,0xE2))
 tb(s, 1.0, 5.25, 11.3, 0.5,
    "Department of Informatics — Institut Teknologi Sepuluh Nopember (ITS), Surabaya",
