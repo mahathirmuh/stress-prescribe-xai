@@ -278,12 +278,12 @@ left = [
     ("02", "Research Gap & Contributions", BLUE),
     ("03", "Proposed 4-Stage Framework", TEAL),
     ("04", "Dataset & Preprocessing", TEAL),
-    ("05", "Methodology — Predict · Explain", AMBER),
+    ("05", "Stage 1 — Prediction & Models", BLUE),
 ]
 right = [
-    ("06", "Methodology — Prescribe · Naturalize", AMBER),
-    ("07", "Results — Models, SHAP, Counterfactuals", PURPLE),
-    ("08", "Ablation Study — Outcome Locking", PURPLE),
+    ("06", "Stage 2 — SHAP Explainability", TEAL),
+    ("07", "Stage 3 — Counterfactuals + Ablation", AMBER),
+    ("08", "Stage 4 — GenAI Naturalization", PURPLE),
     ("09", "Case Studies & Limitations", RED),
     ("10", "Conclusion & Summary", RED),
 ]
@@ -307,7 +307,7 @@ notes(s,
 # SLIDE 3 — Background & Motivation
 # ============================================================================
 s = new_slide()
-header(s, "Background & Motivation", "1 · Background", BLUE)
+header(s, "Background & Motivation", "Background", BLUE)
 bullets(s, 0.9, 1.85, 7.0, 5.0, [
     {"t":"Mental stress is a major modern health concern", "bold":True},
     {"t":"Driven by sleep, lifestyle, work pressure, and digital habits", "lvl":1},
@@ -348,7 +348,7 @@ notes(s,
 # SLIDE 4 — Research Gap & Contributions
 # ============================================================================
 s = new_slide()
-header(s, "Research Gap & Contributions", "1 · Background", BLUE)
+header(s, "Research Gap & Contributions", "Background", BLUE)
 # Gap card
 fill_rect(s, 0.9, 1.9, 5.6, 4.7, WHITE, shape=MSO_SHAPE.ROUNDED_RECTANGLE,
           radius=0.03, line_color=LINE, line_w=1.0)
@@ -392,7 +392,7 @@ notes(s,
 # SLIDE 5 — Proposed 4-Stage Framework (diagram)
 # ============================================================================
 s = new_slide()
-header(s, "Proposed 4-Stage Framework", "2 · Framework", TEAL)
+header(s, "Proposed 4-Stage Framework", "Framework", TEAL)
 tb(s, 0.9, 1.62, 11.5, 0.35, "End-to-end pipeline: from raw sleep/lifestyle data to a narrative recommendation",
    13.5, MUTE, italic=True)
 stages = [
@@ -438,7 +438,7 @@ notes(s,
 # SLIDE 6 — Dataset & Preprocessing
 # ============================================================================
 s = new_slide()
-header(s, "Dataset & Preprocessing", "3 · Methodology", TEAL)
+header(s, "Dataset & Preprocessing", "Dataset", TEAL)
 bullets(s, 0.9, 1.85, 7.15, 5.0, [
     {"t":"Sleep Health & Daily Performance Dataset (Kaggle)", "bold":True, "gcolor":TEAL},
     {"t":"100,000 synthetic samples × 32 features", "lvl":1},
@@ -469,7 +469,7 @@ notes(s,
 # SLIDE 7 — Stage 1: Models & Comparison
 # ============================================================================
 s = new_slide()
-header(s, "Stage 1 — Prediction: Models & Comparison", "4 · Results", BLUE)
+header(s, "Stage 1 — Prediction: Models & Comparison", "Stage 1 · Predict", BLUE)
 add_image(s, os.path.join(FIG_DIR, "model_comparison.png"), 0.9, 1.75, 11.5, 2.55)
 # results table-ish row of chips
 data = [("CatBoost ★", "0.6503", "0.9523", "0.7584", BLUE),
@@ -509,7 +509,7 @@ notes(s,
 # SLIDE 8 — Stage 2: SHAP global + domain validity
 # ============================================================================
 s = new_slide()
-header(s, "Stage 2 — SHAP Explainability (Global)", "4 · Results", TEAL)
+header(s, "Stage 2 — SHAP Explainability (Global)", "Stage 2 · Explain", TEAL)
 add_image(s, os.path.join(FIG_DIR, "shap_global_bar.png"), 8.0, 1.8, 4.7, 4.7)
 bullets(s, 0.9, 1.85, 6.9, 2.6, [
     {"t":"TreeExplainer on CatBoost (2,000-sample test subset)", "gcolor":TEAL},
@@ -549,7 +549,7 @@ notes(s,
 # SLIDE 9 — Stage 2: SHAP local (waterfall)
 # ============================================================================
 s = new_slide()
-header(s, "Stage 2 — SHAP Local Explanations", "4 · Results", TEAL)
+header(s, "Stage 2 — SHAP Local Explanations", "Stage 2 · Explain", TEAL)
 tb(s, 0.9, 1.62, 11.5, 0.35,
    "Per-individual waterfall plots decompose each prediction into feature contributions",
    13.5, MUTE, italic=True)
@@ -576,7 +576,7 @@ notes(s,
 # SLIDE 10 — Stage 3: DiCE Counterfactual Setup
 # ============================================================================
 s = new_slide()
-header(s, "Stage 3 — DiCE Counterfactual Setup", "3 · Methodology", AMBER)
+header(s, "Stage 3 — DiCE Counterfactual Setup", "Stage 3 · Prescribe", AMBER)
 tb(s, 0.9, 1.6, 11.5, 0.35,
    "DiCE genetic algorithm, model_type='regressor' — feature roles enforce causal validity",
    13.5, MUTE, italic=True)
@@ -616,7 +616,7 @@ notes(s,
 # SLIDE 11 — Stage 3: Counterfactual Quality Results
 # ============================================================================
 s = new_slide()
-header(s, "Counterfactual Quality Results", "4 · Results", AMBER)
+header(s, "Counterfactual Quality Results", "Stage 3 · Prescribe", AMBER)
 add_image(s, os.path.join(FIG_DIR, "cf_metrics_by_quartile.png"), 7.35, 1.9, 5.35, 4.4)
 # metric chips on left
 metrics = [("62.5%", "CF success rate (25/40)", AMBER),
@@ -650,7 +650,7 @@ notes(s,
 # SLIDE 12 — Ablation Study: Outcome Locking (NEW)
 # ============================================================================
 s = new_slide()
-header(s, "Ablation Study — Outcome Locking", "4 · Results · Key finding", PURPLE)
+header(s, "Ablation Study — Outcome Locking", "Stage 3 · Key finding", PURPLE)
 bullets(s, 0.9, 1.85, 5.7, 3.6, [
     {"t":"Question: is the causal restriction actually necessary?", "bold":True, "gcolor":PURPLE},
     {"t":"Re-ran DiCE on the same 40 instances, two setups:", "gcolor":PURPLE},
@@ -683,7 +683,7 @@ notes(s,
 # SLIDE 13 — Stage 4: GenAI Naturalization
 # ============================================================================
 s = new_slide()
-header(s, "Stage 4 — GenAI Naturalization", "3 · Methodology", PURPLE)
+header(s, "Stage 4 — GenAI Naturalization", "Stage 4 · Naturalize", PURPLE)
 # input -> GPT -> output flow
 fill_rect(s, 0.9, 1.95, 3.3, 1.5, WHITE, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.06,
           line_color=LINE, line_w=1.0)
@@ -736,7 +736,7 @@ notes(s,
 # SLIDE 14 — Case Study Narratives
 # ============================================================================
 s = new_slide()
-header(s, "Case Study Narratives", "4 · Results · Case studies", PURPLE)
+header(s, "Case Study Narratives", "Results · Case studies", PURPLE)
 tb(s, 0.9, 1.6, 11.5, 0.35, "Three individuals across stress levels — all produced valid, actionable counterfactuals",
    13.5, MUTE, italic=True)
 people = [("LOW", "4.05", "3.89", "−0.16", BLUE),
@@ -786,7 +786,7 @@ notes(s,
 # SLIDE 15 — Limitations & Threats to Validity
 # ============================================================================
 s = new_slide()
-header(s, "Limitations & Threats to Validity", "5 · Limitations", RED)
+header(s, "Limitations & Threats to Validity", "Limitations", RED)
 items = [
     ("Synthetic dataset", "Kaggle-generated; correlations may be artifacts. Proof-of-concept, not clinical validation."),
     ("Causal stationarity", "DiCE assumes feature changes map consistently to predictions — unverified on synthetic data."),
@@ -819,7 +819,7 @@ notes(s,
 # SLIDE 16 — Conclusion
 # ============================================================================
 s = new_slide()
-header(s, "Conclusion", "6 · Conclusion", TEAL)
+header(s, "Conclusion", "Conclusion", TEAL)
 bullets(s, 0.9, 1.9, 6.6, 4.6, [
     {"t":"An end-to-end framework integrating four stages:", "bold":True, "gcolor":TEAL},
     {"t":"Prediction → Explanation → Prescription → Naturalization", "lvl":1, "size":13},
