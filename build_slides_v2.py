@@ -375,8 +375,8 @@ bullets(s, 7.15, 2.78, 5.05, 3.7, [
     {"t":"behaviour vs outcome vs immutable features", "lvl":1, "size":12},
     {"t":"GenAI layer with 3-stage validation", "bold":True, "gcolor":TEAL, "size":13.5},
     {"t":"safety + structural + faithfulness checks", "lvl":1, "size":12},
-    {"t":"Empirical evidence", "bold":True, "gcolor":TEAL, "size":13.5},
-    {"t":"62.5% CF success · 100% plausibility on 40 instances", "lvl":1, "size":12},
+    {"t":"Empirical validation of the full pipeline", "bold":True, "gcolor":TEAL, "size":13.5},
+    {"t":"100% plausibility · ablation-confirmed causal locking", "lvl":1, "size":12},
 ], gap=6)
 notes(s,
 "Di literatur sebelumnya, prediksi stres dan SHAP umumnya sudah ada — tapi belum prescriptive, "
@@ -385,8 +385,9 @@ notes(s,
 "GenAI di healthcare biasanya untuk summarization atau patient education; belum ada yang "
 "memakai GPT sebagai naturaliser output counterfactual. Kontribusi kami ada empat: framework "
 "4-tahap terintegrasi; counterfactual yang causally restricted; layer GenAI dengan safety dan "
-"faithfulness validation; dan bukti empiris — 62,5 persen CF success dengan 100 persen "
-"plausibility pada 40 instance.")
+"faithfulness validation; dan bukti empiris — pipeline kami validasi penuh secara end-to-end, "
+"dengan 100 persen plausibility dan ablation study yang membuktikan causal locking memang "
+"diperlukan. Angka detail seperti CF success rate akan kami bahas di bagian hasil.")
 
 # ============================================================================
 # SLIDE 5 — Proposed 4-Stage Framework (diagram)
