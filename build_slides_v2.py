@@ -80,7 +80,7 @@ FONT_SB= "Segoe UI Semibold"
 
 EMW, EMH = Inches(13.333), Inches(7.5)
 PW = 13.333
-TOTAL = 18
+TOTAL = 17
 
 prs = Presentation()
 prs.slide_width  = EMW
@@ -285,7 +285,7 @@ right = [
     ("07", "Results — Models, SHAP, Counterfactuals", PURPLE),
     ("08", "Ablation Study — Outcome Locking", PURPLE),
     ("09", "Case Studies & Limitations", RED),
-    ("10", "Future Work & Conclusion", RED),
+    ("10", "Conclusion & Summary", RED),
 ]
 def outline_col(items, x):
     y = 1.95
@@ -816,40 +816,10 @@ notes(s,
 "regex membantu, tapi untuk publikasi sebaiknya ditambah faithfulness scoring berbasis NLI.")
 
 # ============================================================================
-# SLIDE 16 — Future Work
+# SLIDE 16 — Conclusion
 # ============================================================================
 s = new_slide()
-header(s, "Future Work", "6 · Future Work", BLUE)
-fw = [
-    ("Two-stage causal architecture", "behaviour → physiological outcome → stress; captures indirect effects behaviour-only CFs miss."),
-    ("Automated faithfulness scoring", "NLI-based entailment between CF facts and GPT narrative — more rigorous than regex."),
-    ("Real-data validation", "Wearable sensors + longitudinal self-report with IRB approval and clinical partnership."),
-    ("User study", "A/B test technical CF vs naturalized narrative for perceived usefulness and clarity."),
-    ("Conversational interface", "Chat-based intervention with follow-up questions, not one-shot recommendations."),
-]
-yy = 1.95
-for i,(t,b) in enumerate(fw):
-    fill_rect(s, 0.9, yy, 11.55, 0.9, WHITE, shape=MSO_SHAPE.ROUNDED_RECTANGLE,
-              radius=0.06, line_color=LINE, line_w=1.0)
-    chip(s, 1.05, yy+0.18, 0.55, 0.55, str(i+1), BLUE, size=15, radius=0.2)
-    tb(s, 1.85, yy+0.13, 4.0, 0.65, t, 14, NAVY, bold=True, font=FONT_SB, anchor=MSO_ANCHOR.MIDDLE)
-    tb(s, 6.0, yy+0.13, 6.3, 0.65, b, 12.3, INK, anchor=MSO_ANCHOR.MIDDLE, ls=1.05)
-    yy += 0.98
-notes(s,
-"Lima arah ke depan. Pertama, two-stage causal architecture: Stage 1 prediksi outcome dari "
-"behavior, Stage 2 prediksi stress dari outcome — ini bisa menangkap indirect effect yang "
-"behavior-only tidak bisa. Kedua, automated faithfulness scoring memakai NLI-based entailment "
-"antara fakta CF dan narasi GPT, lebih rigorous dari regex. Ketiga, validasi data nyata — "
-"wearable sensor plus self-report longitudinal dengan IRB approval dan kerjasama klinis. "
-"Keempat, user study: A/B test antara CF teknis versus rekomendasi ter-naturalisasi untuk "
-"mengukur perceived usefulness dan clarity. Kelima, integrasi conversational interface — "
-"intervensi berbasis chat dengan follow-up question, bukan rekomendasi sekali jadi.")
-
-# ============================================================================
-# SLIDE 17 — Conclusion
-# ============================================================================
-s = new_slide()
-header(s, "Conclusion", "7 · Conclusion", TEAL)
+header(s, "Conclusion", "6 · Conclusion", TEAL)
 bullets(s, 0.9, 1.9, 6.6, 4.6, [
     {"t":"An end-to-end framework integrating four stages:", "bold":True, "gcolor":TEAL},
     {"t":"Prediction → Explanation → Prescription → Naturalization", "lvl":1, "size":13},
@@ -883,7 +853,7 @@ notes(s,
 "lanjutan di setting klinis, wearable, atau longitudinal.")
 
 # ============================================================================
-# SLIDE 18 — Thank You / Q&A
+# SLIDE 17 — Thank You / Q&A
 # ============================================================================
 s = new_slide()
 bg(s, NAVY)
