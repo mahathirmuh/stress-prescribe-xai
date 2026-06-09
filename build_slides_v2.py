@@ -80,7 +80,7 @@ FONT_SB= "Segoe UI Semibold"
 
 EMW, EMH = Inches(13.333), Inches(7.5)
 PW = 13.333
-TOTAL = 18
+TOTAL = 19
 
 prs = Presentation()
 prs.slide_width  = EMW
@@ -783,7 +783,62 @@ notes(s,
 "tiga kali sebelum fallback.")
 
 # ============================================================================
-# SLIDE 15 — Case Study Narratives
+# SLIDE 15 — Case Study: end-to-end overview (3 individuals × 3 stages)
+# ============================================================================
+s = new_slide()
+header(s, "Case Study — End-to-End", "Results · Case studies", PURPLE)
+tb(s, 0.9, 1.55, 11.6, 0.35,
+   "The same three individuals, traced across all three stages at a glance",
+   13.5, MUTE, italic=True)
+col_w, col_gap = 3.42, 0.13
+col_x = [2.2 + i*(col_w+col_gap) for i in range(3)]
+cell_accents = [TEAL, AMBER, PURPLE]
+heads = [("EXPLAIN", "SHAP — why stressed"),
+         ("PRESCRIBE", "Counterfactual — what to change"),
+         ("NATURALIZE", "GenAI — the advice")]
+hy, hh = 1.95, 0.6
+for cx, acc, (name, sub) in zip(col_x, cell_accents, heads):
+    fill_rect(s, cx, hy, col_w, hh, acc, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.1)
+    tb(s, cx, hy+0.07, col_w, 0.3, name, 13.5, WHITE, bold=True, align=PP_ALIGN.CENTER, font=FONT_SB)
+    tb(s, cx, hy+0.34, col_w, 0.22, sub, 9.5, RGBColor(0xF2,0xF5,0xFF), align=PP_ALIGN.CENTER)
+rows = [
+    ("LOW", BLUE, "actual 3.0",
+     "sleep_quality 7.6\nstrongest stress reducer\n(SHAP −1.63)",
+     "pred 4.05 → 3.89   (Δ −0.16)\n3 small behaviour tweaks\n(already low stress)",
+     "“…ada beberapa kebiasaan yang bisa disesuaikan untuk menurunkan stres Anda.”"),
+    ("MID", AMBER, "actual 6.0",
+     "sleep_quality 5.6\nmain reducer (−0.34)\n+ high screen time",
+     "pred 5.25 → 4.94   (Δ −0.32)\nsleep 6.9→5.9 h · screen 145→111 m\n(+3 more changes)",
+     "“…beberapa faktor yang dapat diperbaiki dalam rutinitas harian Anda.”"),
+    ("HIGH", RED, "actual 8.5",
+     "occupation: Lawyer\ntop stress driver\n(SHAP +1.12)",
+     "pred 7.21 → 6.86   (Δ −0.35)\nsleep 6.0→8.4 h · alcohol 1→0\nscreen 102→98 m",
+     "“…tingkat stres cukup tinggi; mulai dari perbaiki durasi tidur & waktu layar.”"),
+]
+ry, rh, rgap = 2.7, 1.3, 0.1
+for name, col, actual, c_exp, c_pre, c_nat in rows:
+    fill_rect(s, 0.55, ry, 1.55, rh, col, shape=MSO_SHAPE.ROUNDED_RECTANGLE, radius=0.08)
+    tb(s, 0.55, ry+0.38, 1.55, 0.4, name, 16, WHITE, bold=True, align=PP_ALIGN.CENTER, font=FONT_SB)
+    tb(s, 0.55, ry+0.78, 1.55, 0.24, actual, 10.5, RGBColor(0xF2,0xF5,0xFF), align=PP_ALIGN.CENTER)
+    for cx, acc, txt in zip(col_x, cell_accents, (c_exp, c_pre, c_nat)):
+        fill_rect(s, cx, ry, col_w, rh, WHITE, shape=MSO_SHAPE.ROUNDED_RECTANGLE,
+                  radius=0.05, line_color=LINE, line_w=1.0)
+        tb(s, cx+0.18, ry+0.05, col_w-0.36, rh-0.1, txt, 10.5, INK,
+           italic=(acc == PURPLE), anchor=MSO_ANCHOR.MIDDLE, ls=1.08)
+    ry += rh + rgap
+notes(s,
+"Ini slide ringkasan end-to-end — ketiga individu yang sama kita lihat menembus tiga tahap "
+"sekaligus, baca dari kiri ke kanan. Kolom EXPLAIN menampilkan faktor SHAP dominan tiap orang: "
+"pada individu LOW, kualitas tidur 7,6 justru jadi penekan stres terkuat dengan SHAP minus 1,63; "
+"sebaliknya pada HIGH, pekerjaan sebagai pengacara adalah pendorong stres terbesar, plus 1,12. "
+"Kolom PRESCRIBE menampilkan rekomendasi counterfactual — perubahan minimal yang menurunkan "
+"prediksi, lengkap dengan delta-nya. Kolom NATURALIZE menampilkan cuplikan narasi GenAI yang "
+"empatik. Tabel ini menegaskan benang merah seluruh framework — dari penjelasan, ke "
+"rekomendasi, ke bahasa awam — untuk orang yang sama. Detail naratif lengkap kasus HIGH ada di "
+"slide berikutnya.")
+
+# ============================================================================
+# SLIDE 16 — Case Study Narratives (deep-dive)
 # ============================================================================
 s = new_slide()
 header(s, "Case Study Narratives", "Results · Case studies", PURPLE)
@@ -833,7 +888,7 @@ notes(s,
 "muncul sebagai action.")
 
 # ============================================================================
-# SLIDE 16 — Limitations & Threats to Validity
+# SLIDE 17 — Limitations & Threats to Validity
 # ============================================================================
 s = new_slide()
 header(s, "Limitations & Threats to Validity", "Limitations", RED)
@@ -866,7 +921,7 @@ notes(s,
 "regex membantu, tapi untuk publikasi sebaiknya ditambah faithfulness scoring berbasis NLI.")
 
 # ============================================================================
-# SLIDE 17 — Conclusion
+# SLIDE 18 — Conclusion
 # ============================================================================
 s = new_slide()
 header(s, "Conclusion", "Conclusion", TEAL)
@@ -903,7 +958,7 @@ notes(s,
 "lanjutan di setting klinis, wearable, atau longitudinal.")
 
 # ============================================================================
-# SLIDE 18 — Thank You / Q&A
+# SLIDE 19 — Thank You / Q&A
 # ============================================================================
 s = new_slide()
 bg(s, NAVY)
@@ -928,6 +983,6 @@ notes(s,
 "hasil, maupun arah pengembangan ke depan.")
 
 # ----------------------------------------------------------------------------
-OUT = "kk-ngebut_slides_v2.pptx"
+OUT = os.environ.get("DECK_OUT", "kk-ngebut_slides_v2.pptx")
 prs.save(OUT)
 print(f"saved {OUT} with {len(prs.slides.__iter__().__class__ and list(prs.slides))} slides")
