@@ -90,25 +90,25 @@ Toggle `USE_SAMPLE = True` di Section 0 untuk iterasi cepat dengan 10k sampel (~
 
 ## Alur Kerja Notebook (13 Sections)
 
-1. **§0–2**: Setup, load data, EDA (verifikasi statistik draft)
-2. **§3**: Preprocessing (drop 4 leakage features, dual-encoding A/B, stratified 70/15/15)
-3. **§4**: Train **CatBoost** ⭐ milestone (R² ≥ 0.6, MAE ≤ 1.0)
-4. **§5–6**: Train Random Forest & TabNet
-5. **§7**: Comparison + 5-Fold CV pada best model
-6. **§8**: SHAP global (bar + beeswarm) + local (waterfall × 3) + domain validity sign-check
-7. **§9**: Counterfactual analysis (DiCE genetic method)
+1. **Section 0–2**: Setup, load data, EDA (verifikasi statistik draft)
+2. **Section 3**: Preprocessing (drop 4 leakage features, dual-encoding A/B, stratified 70/15/15)
+3. **Section 4**: Train **CatBoost** ⭐ milestone (R² ≥ 0.6, MAE ≤ 1.0)
+4. **Section 5–6**: Train Random Forest & TabNet
+5. **Section 7**: Comparison + 5-Fold CV pada best model
+6. **Section 8**: SHAP global (bar + beeswarm) + local (waterfall × 3) + domain validity sign-check
+7. **Section 9**: Counterfactual analysis (DiCE genetic method)
     - Causal restriction: behavior vs outcome vs immutable
     - `permitted_range` safety constraints (alcohol locked at [0,0], dll)
     - 5 metrics: Validity, Proximity, Sparsity, Diversity, Plausibility
     - Cascade retry untuk case studies (target orig−0.30 → −0.15 → −0.05)
-8. **§10**: GenAI naturalization dengan **3-layer validation**:
+8. **Section 10**: GenAI naturalization dengan **3-layer validation**:
     - **Layer 1 — Safety filter**: regex blocklist (obat, diagnosa, promote alkohol)
     - **Layer 2 — Faithfulness check**: angka before/after exact match, no locked outcome leak
     - **Layer 3 — Structural validation**: required keys + type + content + nested schema
     - Iterative refinement retry (kirim feedback ke GPT antar attempt)
-9. **§11**: Individual insights & kesimpulan (markdown rendering)
-10. **§12**: Limitations & threats to validity (7 sub-sections)
-11. **§13**: Instruksi re-run full 100k
+9. **Section 11**: Individual insights & kesimpulan (markdown rendering)
+10. **Section 12**: Limitations & threats to validity (7 sub-sections)
+11. **Section 13**: Instruksi re-run full 100k
 
 ## Causal Restriction (Yang Membuat Pipeline Unik)
 
