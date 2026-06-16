@@ -19,13 +19,15 @@ Detail riset & metodologi di [docs/research_draft.md](docs/research_draft.md).
   <sub>Alur pipeline 4-tahap (model paralel + titik keputusan & feedback loop) — penjelasan detail di <a href="docs/PIPELINE_FLOWCHART.md">docs/PIPELINE_FLOWCHART.md</a></sub>
 </p>
 
-## Hasil Utama (sample 10k)
+## Hasil Utama (full 100k)
+
+> Hasil dari run penuh **100.000 baris** (`USE_SAMPLE = False`); subset 10k stratified hanya dipakai untuk iterasi cepat saat pengembangan.
 
 | Metrik | Value |
 |---|---|
 | **CatBoost R²** | 0.6503 (best dari 3 model) |
 | MAE | 0.7584 |
-| 5-Fold CV R² | 0.6266 ± 0.0093 |
+| 5-Fold CV R² | 0.6491 ± 0.0031 |
 | SHAP `sleep_quality_score` corr | −0.996 (domain valid) |
 | **CF Success Rate** | 62.5% (25 dari 40 instances) |
 | Plausibility | 100% (semua CF di dalam `permitted_range`) |
