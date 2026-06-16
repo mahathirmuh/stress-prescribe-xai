@@ -68,8 +68,8 @@ Toggle `USE_SAMPLE = True` di Section 0 untuk iterasi cepat dengan 10k sampel (~
 .
 ├── stress_prediction.ipynb           # notebook utama end-to-end (13 sections)
 ├── sleep_health_dataset.csv          # dataset Kaggle 100k baris × 32 kolom
-├── build_slides_v2.py                # generator deck (-> kk-ngebut_slides_v2.pptx)
-├── make_pipeline_fig*.py             # generator figur pipeline (alternatif matplotlib)
+├── build_slides_v2.py                # generator deck (lokal, gitignored)
+├── make_pipeline_fig*.py             # generator figur pipeline (lokal, gitignored)
 ├── requirements.txt                  # dependencies Python
 ├── README.md                         # file ini
 ├── .env.example                      # template API key

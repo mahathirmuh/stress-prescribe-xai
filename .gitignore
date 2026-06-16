@@ -48,3 +48,8 @@ Thumbs.db
 # Outputs (boleh di-track sebagian, tergantung kebutuhan)
 # outputs/figures/*.png
 # outputs/recommendations/*.json
+
+# Paper/slide artifact generators — local tooling (outputs already gitignored)
+build_slides_v2.py
+make_pipeline_fig.py
+make_pipeline_fig_layered.py
