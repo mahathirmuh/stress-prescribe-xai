@@ -2,7 +2,7 @@
 
 **Explainable Machine Learning with Counterfactual Analysis and GenAI Naturalization for Stress Prediction and Intervention Using Sleep and Lifestyle Data**
 
-![Pipeline Flowchart](outputs/pipeline_flowchart_preview.png)
+![Pipeline Flowchart](outputs/pipeline_flowchart.png)
 
 > Diagram di atas menggambarkan **alur kontrol end-to-end** dari framework empat tahap: **Predict → Explain → Prescribe → Naturalize**, lengkap dengan titik keputusan (decision) dan jalur umpan-balik (loop).
 
@@ -12,15 +12,17 @@
 
 | Elemen | Arti |
 |---|---|
-| ⬭ **Stadium abu-abu** | Terminator — titik **mulai** (input data) / **selesai** (output narasi) |
+| ⬭ **Stadium abu-abu gelap** | Terminator — titik **mulai** (input data) / **selesai** (output narasi) |
 | ▭ **Persegi (header berwarna)** | **Proses** / langkah komputasi |
-| ◇ **Belah ketupat kuning** | **Decision** — titik percabangan (Ya / Tidak) |
+| ◇ **Belah ketupat biru-abu** | **Decision** — titik percabangan (Yes / No) |
 | ▱ **Jajar genjang krem** | **Artefak data / I/O** (hasil antara) |
+| ▭ **Kotak pink (border merah)** | **Aksi loop** — relax target / dummy fallback |
 | → **Panah hitam** | Aliran utama (jalur "Yes") |
+| → **Panah emas** | Aliran ke artefak data |
 | → **Panah merah** | Jalur **feedback / loop** |
 | ┄→ **Panah merah putus-putus** | Jalur **fallback** |
 
-**Warna tahap:** 🔵 biru = Predict · 🟠 oranye = Explain · 🟢 hijau = Prescribe · 🟣 ungu = Naturalize.
+**Warna tahap (header proses):** 🔵 biru = Predict · 🟠 oranye = Explain · 🟢 hijau = Prescribe · 🟣 ungu = Naturalize.
 
 ---
 
@@ -80,5 +82,8 @@ Data → Preprocess
 ---
 
 ## Catatan
-- File gambar: [`outputs/pipeline_flowchart_preview.png`](outputs/pipeline_flowchart_preview.png) (regenerate via `python make_pipeline_flowchart.py`).
-- Status: **preview** — belum disisipkan ke `JUTI.docx`. Tinggal konfirmasi kalau mau di-apply sebagai figur.
+
+- **Sumber (vektor):** [`outputs/pipeline_flowchart.svg`](outputs/pipeline_flowchart.svg) — versi rapi (editable).
+- **Render raster:** [`outputs/pipeline_flowchart.png`](outputs/pipeline_flowchart.png) (2920×4160, 2×).
+- Regenerate PNG dari SVG (headless Chrome): `chrome --headless=new --force-device-scale-factor=2 --window-size=1460,2080 --screenshot=outputs/pipeline_flowchart.png outputs/_flowchart_render.html`
+- Status: **belum disisipkan** ke `JUTI.docx` — tinggal konfirmasi mau di-apply sebagai figur (ganti Fig. 1 atau tambah figur baru).
