@@ -14,6 +14,11 @@ Detail riset & metodologi di [docs/research_draft.md](docs/research_draft.md).
 3. **PRESCRIBE** — DiCE counterfactual dengan causal restriction (behavior-only)
 4. **NATURALIZE** — GPT-4o-mini dengan 3-layer validation (safety + structural + faithfulness)
 
+<p align="center">
+  <img src="outputs/pipeline_flowchart.png" alt="Flowchart pipeline: Data, Predict, Explain, Prescribe, Naturalize" width="520"><br>
+  <sub>Alur pipeline 4-tahap (model paralel + titik keputusan & feedback loop) — penjelasan detail di <a href="docs/PIPELINE_FLOWCHART.md">docs/PIPELINE_FLOWCHART.md</a></sub>
+</p>
+
 ## Hasil Utama (sample 10k)
 
 | Metrik | Value |
