@@ -34,6 +34,89 @@ Detail riset & metodologi di [docs/research_draft.md](docs/research_draft.md).
 | Case Studies | 3/3 sukses (low/mid/high) |
 | GenAI naturalization | 3/3 lolos safety + structural + faithfulness |
 
+## Setup
+
+### 1. Buat virtual environment & install dependencies
+
+PowerShell (Windows):
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+Bash (Linux/Mac):
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 2. Siapkan API key OpenAI
+
+```powershell
+Copy-Item .env.example .env
+# lalu edit .env, isi OPENAI_API_KEY
+```
+
+### 3. Jalankan notebook
+
+```powershell
+jupyter notebook stress_prediction.ipynb
+```
+
+Toggle `USE_SAMPLE = True` di Section 0 untuk iterasi cepat dengan 10k sampel (~15–20 menit). Set `False` di Section 13 untuk full 100k run (~60–120 menit, CPU only).
+
+## Alur Kerja Notebook (13 Sections)
+
+1. **Section 0–2**: Setup, load data, EDA (verifikasi statistik draft)
+2. **Section 3**: Preprocessing (drop 4 leakage features, dual-encoding A/B, stratified 70/15/15)
+3. **Section 4**: Train **CatBoost** ⭐ milestone (R² ≥ 0.6, MAE ≤ 1.0)
+4. **Section 5–6**: Train Random Forest & TabNet
+5. **Section 7**: Comparison + 5-Fold CV pada best model
+6. **Section 8**: SHAP global (bar + beeswarm) + local (waterfall × 3) + domain validity sign-check
+7. **Section 9**: Counterfactual analysis (DiCE genetic method)
+    - Causal restriction: behavior vs outcome vs immutable
+    - `permitted_range` safety constraints (alcohol locked at [0,0], dll)
+    - 5 metrics: Validity, Proximity, Sparsity, Diversity, Plausibility
+    - Cascade retry untuk case studies (target orig−0.30 → −0.15 → −0.05)
+8. **Section 10**: GenAI naturalization dengan **3-layer validation**:
+    - **Layer 1 — Safety filter**: regex blocklist (obat, diagnosa, promote alkohol)
+    - **Layer 2 — Faithfulness check**: angka before/after exact match, no locked outcome leak
+    - **Layer 3 — Structural validation**: required keys + type + content + nested schema
+    - Iterative refinement retry (kirim feedback ke GPT antar attempt)
+9. **Section 11**: Individual insights & kesimpulan (markdown rendering)
+10. **Section 12**: Limitations & threats to validity (7 sub-sections)
+11. **Section 13**: Instruksi re-run full 100k
+
+## Struktur Repository
+
+```
+.
+├── stress_prediction.ipynb           # notebook utama end-to-end (13 sections)
+├── sleep_health_dataset.csv          # dataset Kaggle 100k baris × 32 kolom
+├── requirements.txt                  # dependencies Python
+├── README.md                         # file ini
+├── .env.example                      # template API key
+├── docs/                             # dokumentasi
+│   ├── research_draft.md             # draft riset & metodologi
+│   ├── plan.md                       # detail implementasi per-section
+│   ├── REFERENCES.md                 # 40 referensi IEEE (clickable)
+│   └── PIPELINE_FLOWCHART.md         # penjelasan flowchart pipeline
+├── prompts/
+│   └── expert_system_prompt.md       # system prompt GPT dengan safety rules
+├── data/processed/                   # encoder, scaler, split data (artifacts)
+├── models/                           # model terlatih (catboost.cbm dll)
+├── outputs/
+│   ├── figures/                      # plot EDA, SHAP, CF (PNG)
+│   ├── reports/                      # CSV/MD metrics & insights
+│   ├── recommendations/              # output JSON naratif GPT per individu
+│   └── pipeline_flowchart.svg/.png   # diagram flowchart pipeline
+└── catboost_info/                    # log training CatBoost (auto-generated)
+```
+
 ## Visualisasi & Penjelasan Hasil
 
 Semua figur ada di [`outputs/figures/`](outputs/figures/); angka mentah di [`outputs/reports/`](outputs/reports/).
@@ -97,89 +180,6 @@ Tiga studi kasus (perubahan **behavior-only**, dari [`cf_case_studies.json`](out
 ![Ablation outcome locking](outputs/figures/ablation_comparison.png)
 
 Membuka kunci fitur outcome menaikkan success **62.5% → 100%**, **TAPI** 100% counterfactual lalu mengubah outcome (mis. *"naikkan sleep_quality 4→8"* yang tak bisa user lakukan langsung) dan **0% murni actionable**. Setup kami (**locked**) menukar 37.5 poin success demi **100% rekomendasi behavior-only yang benar-benar bisa dijalankan** — inilah yang membuat pipeline ini *prescriptive*, bukan sekadar deskriptif.
-
-## Setup
-
-### 1. Buat virtual environment & install dependencies
-
-PowerShell (Windows):
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
-
-Bash (Linux/Mac):
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-### 2. Siapkan API key OpenAI
-
-```powershell
-Copy-Item .env.example .env
-# lalu edit .env, isi OPENAI_API_KEY
-```
-
-### 3. Jalankan notebook
-
-```powershell
-jupyter notebook stress_prediction.ipynb
-```
-
-Toggle `USE_SAMPLE = True` di Section 0 untuk iterasi cepat dengan 10k sampel (~15–20 menit). Set `False` di Section 13 untuk full 100k run (~60–120 menit, CPU only).
-
-## Struktur Repository
-
-```
-.
-├── stress_prediction.ipynb           # notebook utama end-to-end (13 sections)
-├── sleep_health_dataset.csv          # dataset Kaggle 100k baris × 32 kolom
-├── requirements.txt                  # dependencies Python
-├── README.md                         # file ini
-├── .env.example                      # template API key
-├── docs/                             # dokumentasi
-│   ├── research_draft.md             # draft riset & metodologi
-│   ├── plan.md                       # detail implementasi per-section
-│   ├── REFERENCES.md                 # 40 referensi IEEE (clickable)
-│   └── PIPELINE_FLOWCHART.md         # penjelasan flowchart pipeline
-├── prompts/
-│   └── expert_system_prompt.md       # system prompt GPT dengan safety rules
-├── data/processed/                   # encoder, scaler, split data (artifacts)
-├── models/                           # model terlatih (catboost.cbm dll)
-├── outputs/
-│   ├── figures/                      # plot EDA, SHAP, CF (PNG)
-│   ├── reports/                      # CSV/MD metrics & insights
-│   ├── recommendations/              # output JSON naratif GPT per individu
-│   └── pipeline_flowchart.svg/.png   # diagram flowchart pipeline
-└── catboost_info/                    # log training CatBoost (auto-generated)
-```
-
-## Alur Kerja Notebook (13 Sections)
-
-1. **Section 0–2**: Setup, load data, EDA (verifikasi statistik draft)
-2. **Section 3**: Preprocessing (drop 4 leakage features, dual-encoding A/B, stratified 70/15/15)
-3. **Section 4**: Train **CatBoost** ⭐ milestone (R² ≥ 0.6, MAE ≤ 1.0)
-4. **Section 5–6**: Train Random Forest & TabNet
-5. **Section 7**: Comparison + 5-Fold CV pada best model
-6. **Section 8**: SHAP global (bar + beeswarm) + local (waterfall × 3) + domain validity sign-check
-7. **Section 9**: Counterfactual analysis (DiCE genetic method)
-    - Causal restriction: behavior vs outcome vs immutable
-    - `permitted_range` safety constraints (alcohol locked at [0,0], dll)
-    - 5 metrics: Validity, Proximity, Sparsity, Diversity, Plausibility
-    - Cascade retry untuk case studies (target orig−0.30 → −0.15 → −0.05)
-8. **Section 10**: GenAI naturalization dengan **3-layer validation**:
-    - **Layer 1 — Safety filter**: regex blocklist (obat, diagnosa, promote alkohol)
-    - **Layer 2 — Faithfulness check**: angka before/after exact match, no locked outcome leak
-    - **Layer 3 — Structural validation**: required keys + type + content + nested schema
-    - Iterative refinement retry (kirim feedback ke GPT antar attempt)
-9. **Section 11**: Individual insights & kesimpulan (markdown rendering)
-10. **Section 12**: Limitations & threats to validity (7 sub-sections)
-11. **Section 13**: Instruksi re-run full 100k
 
 ## Causal Restriction (Yang Membuat Pipeline Unik)
 
