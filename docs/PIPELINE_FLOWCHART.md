@@ -2,7 +2,7 @@
 
 **Explainable Machine Learning with Counterfactual Analysis and GenAI Naturalization for Stress Prediction and Intervention Using Sleep and Lifestyle Data**
 
-![Pipeline Flowchart](outputs/pipeline_flowchart.png)
+![Pipeline Flowchart](../outputs/pipeline_flowchart.png)
 
 > Diagram di atas menggambarkan **alur kontrol end-to-end** dari framework empat tahap: **Predict → Explain → Prescribe → Naturalize**, lengkap dengan titik keputusan (decision) dan jalur umpan-balik (loop).
 
@@ -83,8 +83,8 @@ Data → Preprocess
 
 ## Catatan
 
-- **Sumber (vektor):** [`outputs/pipeline_flowchart.svg`](outputs/pipeline_flowchart.svg) — versi rapi (editable).
-- **Render raster:** [`outputs/pipeline_flowchart.png`](outputs/pipeline_flowchart.png) (2920×4160, 2×).
+- **Sumber (vektor):** [`outputs/pipeline_flowchart.svg`](../outputs/pipeline_flowchart.svg) — versi rapi (editable).
+- **Render raster:** [`outputs/pipeline_flowchart.png`](../outputs/pipeline_flowchart.png) (2920×4160, 2×).
 - Regenerate PNG dari SVG (headless Chrome): `chrome --headless=new --force-device-scale-factor=2 --window-size=1460,2080 --screenshot=outputs/pipeline_flowchart.png outputs/_flowchart_render.html`
 - Status: ✅ **sudah diterapkan** sebagai **Fig. 1** di `JUTI.docx` (lebar 6.2", menggantikan diagram layered). Fig. 2/3/4 = model comparison / SHAP / CF metrics.
 - ⚠️ `JUTI.pdf` perlu **di-export ulang** dari Word agar versi PDF ikut memuat flowchart ini.

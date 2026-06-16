@@ -2,7 +2,7 @@
 
 ## Context
 
-Penelitian ini bertujuan membangun **framework prediksi stres yang prescriptive** dari [sleep_health_dataset.csv](sleep_health_dataset.csv) (100k baris × 32 kolom). Alur:
+Penelitian ini bertujuan membangun **framework prediksi stres yang prescriptive** dari [sleep_health_dataset.csv](../sleep_health_dataset.csv) (100k baris × 32 kolom). Alur:
 
 1. **Predict**: model regresi (`CatBoost`, `RandomForest`, `TabNet`) → `stress_score` (1.0–10.0)
 2. **Explain**: SHAP → fitur penyebab prediksi
