@@ -2,7 +2,7 @@
 
 Penelitian conference paper: framework 4-tahap untuk prediksi `stress_score` dari data tidur & gaya hidup, dijelaskan dengan SHAP, diberi rekomendasi via counterfactual (DiCE), lalu dinaturalisasi menjadi narasi sistem pakar berbahasa Indonesia via GPT-4o-mini.
 
-**Authors**: Ananta Dwi Prayoga Alwy, Dhayu Intan Nareswari, Mahathir Muhammad, Obi Kastanya
+**Authors**: Obi Kastanya, Dhayu Intan Nareswari, Ananta Dwi Prayoga Alwy, Mahathir Muhammad
 Department of Informatics, Faculty of Intelligent Electrical and Informatics Technology, Institut Teknologi Sepuluh Nopember (ITS), Surabaya.
 
 Detail riset & metodologi di [docs/research_draft.md](docs/research_draft.md).
