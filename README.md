@@ -5,7 +5,7 @@ Penelitian conference paper: framework 4-tahap untuk prediksi `stress_score` dar
 **Authors**: Ananta Dwi Prayoga Alwy, Dhayu Intan Nareswari, Mahathir Muhammad, Obi Kastanya
 Department of Informatics, Faculty of Intelligent Electrical and Informatics Technology, Institut Teknologi Sepuluh Nopember (ITS), Surabaya.
 
-Detail riset di [docs/research_draft.md](docs/research_draft.md). Paper final di `JUTI.docx` (lokal, gitignored).
+Detail riset & metodologi di [docs/research_draft.md](docs/research_draft.md).
 
 ## Pipeline 4-Tahap
 
@@ -68,13 +68,9 @@ Toggle `USE_SAMPLE = True` di Section 0 untuk iterasi cepat dengan 10k sampel (~
 .
 ├── stress_prediction.ipynb           # notebook utama end-to-end (13 sections)
 ├── sleep_health_dataset.csv          # dataset Kaggle 100k baris × 32 kolom
-├── build_slides_v2.py                # generator deck (lokal, gitignored)
-├── make_pipeline_fig*.py             # generator figur pipeline (lokal, gitignored)
 ├── requirements.txt                  # dependencies Python
 ├── README.md                         # file ini
 ├── .env.example                      # template API key
-├── JUTI.docx / JUTI.pdf              # paper aktif (format JUTI)
-├── kk-ngebut_slides_v2.pptx          # slide aktif
 ├── docs/                             # dokumentasi
 │   ├── research_draft.md             # draft riset & metodologi
 │   ├── plan.md                       # detail implementasi per-section
@@ -88,9 +84,8 @@ Toggle `USE_SAMPLE = True` di Section 0 untuk iterasi cepat dengan 10k sampel (~
 │   ├── figures/                      # plot EDA, SHAP, CF (PNG)
 │   ├── reports/                      # CSV/MD metrics & insights
 │   ├── recommendations/              # output JSON naratif GPT per individu
-│   └── pipeline_flowchart.svg/.png   # flowchart pipeline (Fig. 1 paper)
-├── catboost_info/                    # log training CatBoost (auto-generated)
-└── archive/                          # arsip non-aktif (gitignored): versi lama, backup, template
+│   └── pipeline_flowchart.svg/.png   # diagram flowchart pipeline
+└── catboost_info/                    # log training CatBoost (auto-generated)
 ```
 
 ## Alur Kerja Notebook (13 Sections)
@@ -114,15 +109,6 @@ Toggle `USE_SAMPLE = True` di Section 0 untuk iterasi cepat dengan 10k sampel (~
 9. **§11**: Individual insights & kesimpulan (markdown rendering)
 10. **§12**: Limitations & threats to validity (7 sub-sections)
 11. **§13**: Instruksi re-run full 100k
-
-## Paper & Slides
-
-Output bukan-kode (tidak di-track di git, ada di disk lokal):
-
-- `JUTI.docx` — paper format JUTI (single column, IEEE refs, flowchart pipeline + 40 referensi)
-- `JUTI.pdf` — PDF export untuk submission
-- `kk-ngebut_slides_v2.pptx` — deck presentasi (regenerate via `python build_slides_v2.py`)
-- `archive/` — versi lama (paper & slide v1), backup `JUTI.docx`, dan template jurnal
 
 ## Causal Restriction (Yang Membuat Pipeline Unik)
 
