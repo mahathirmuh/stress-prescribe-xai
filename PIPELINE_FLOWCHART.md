@@ -22,7 +22,7 @@
 | → **Panah merah** | Jalur **feedback / loop** |
 | ┄→ **Panah merah putus-putus** | Jalur **fallback** |
 
-**Warna tahap (header proses):** 🔵 biru = Predict · 🟠 oranye = Explain · 🟢 hijau = Prescribe · 🟣 ungu = Naturalize.
+**Warna header proses:** 🔵 biru = Stage 1 (model & 5-fold CV) · ⬛ slate = Stage 2–4 (Explain / Prescribe / Naturalize).
 
 ---
 
