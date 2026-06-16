@@ -32,6 +32,70 @@ Detail riset & metodologi di [docs/research_draft.md](docs/research_draft.md).
 | Case Studies | 3/3 sukses (low/mid/high) |
 | GenAI naturalization | 3/3 lolos safety + structural + faithfulness |
 
+## Visualisasi & Penjelasan Hasil
+
+Semua figur ada di [`outputs/figures/`](outputs/figures/); angka mentah di [`outputs/reports/`](outputs/reports/).
+
+### EDA — Eksplorasi Data (Section 0–2)
+
+![Distribusi stress_score](outputs/figures/eda_stress_distribution.png)
+
+Distribusi target `stress_score` mendekati normal di sekitar **mean 5.73** (rentang 1.0–10.0) — tidak ada konsentrasi ekstrem di satu nilai.
+
+![Correlation heatmap](outputs/figures/eda_correlation_heatmap.png)
+
+Korelasi antar fitur numerik. `stress_score` berkorelasi **negatif** paling kuat dengan `sleep_quality_score` (**r ≈ −0.64**) & `sleep_duration_hrs`, dan **positif** dengan `work_hours_that_day`.
+
+![Boxplot kategorikal](outputs/figures/eda_categorical_boxplots.png)
+
+Stres per fitur kategorikal: **mental_health_condition** (Both/Anxiety/Depression > Healthy) dan **shift_work = 1** menaikkan stres; **Weekday > Weekend**; gender, chronotype, & sleep_aid relatif datar.
+
+### PREDICT — Performa Model (Section 4–7)
+
+![Perbandingan model](outputs/figures/model_comparison.png)
+
+CatBoost unggul di ketiga metrik: **R² 0.650** · RMSE 0.952 · MAE 0.758, disusul TabNet (R² 0.642) dan Random Forest (R² 0.624). Gap tipis → gradient boosting & deep tabular sama-sama layak; CatBoost dipilih (plus dukungan kategorikal native).
+
+![CatBoost diagnostics](outputs/figures/catboost_diagnostics.png)
+
+Kiri: prediksi vs aktual mengikuti garis diagonal; kanan: residual terpusat di ~0 tanpa pola — fit sehat, tanpa bias sistematis.
+
+### EXPLAIN — SHAP (Section 8)
+
+![SHAP global bar](outputs/figures/shap_global_bar.png)
+
+Importance global (mean |SHAP|): **`sleep_quality_score` (0.66)** & **`occupation` (0.57)** dominan, lalu `sleep_duration_hrs` (0.13), `room_temperature_celsius` (0.08), `wake_episodes_per_night` (0.08).
+
+![SHAP beeswarm](outputs/figures/shap_global_beeswarm.png)
+
+Arah pengaruh: nilai `sleep_quality_score` **tinggi (merah)** → SHAP **negatif** (menurunkan prediksi stres). Domain sign-check mengonfirmasi korelasi nilai-vs-SHAP **−0.996** untuk fitur teratas.
+
+Penjelasan **lokal** (waterfall) untuk 3 individu studi kasus:
+
+| Low stress | Mid stress | High stress |
+|:---:|:---:|:---:|
+| ![](outputs/figures/shap_waterfall_low.png) | ![](outputs/figures/shap_waterfall_mid.png) | ![](outputs/figures/shap_waterfall_high.png) |
+
+### PRESCRIBE — Counterfactual (Section 9)
+
+![CF metrics by quartile](outputs/figures/cf_metrics_by_quartile.png)
+
+Distribusi 5 metrik counterfactual per kuartil stres: **Validity & Plausibility = 100%**, Proximity rendah (mean 0.226), Sparsity ~4.65 fitur berubah, Diversity ~0.12 — seimbang di semua kuartil (tidak bias ke level stres tertentu). Success rate keseluruhan **62.5% (25/40)**.
+
+Tiga studi kasus (perubahan **behavior-only**, dari [`cf_case_studies.json`](outputs/reports/cf_case_studies.json)):
+
+| Kasus | Aktual | Pred. | CF Pred. | Δ | Contoh perubahan |
+|---|---|---|---|---|---|
+| Low  | 3.0 | 4.05 | 3.89 | **−0.16** | tidur 6.08→4.0 jam, suhu 17.2→16°C |
+| Mid  | 6.0 | 5.25 | 4.94 | **−0.32** | screen-time 145→111 mnt, sleep-aid 1→0 |
+| High | 8.5 | 7.21 | 6.86 | **−0.35** | alkohol 1→0, tidur 6.0→8.4 jam |
+
+### Ablation — Bukti Causal Restriction (Section 9)
+
+![Ablation outcome locking](outputs/figures/ablation_comparison.png)
+
+Membuka kunci fitur outcome menaikkan success **62.5% → 100%**, **TAPI** 100% counterfactual lalu mengubah outcome (mis. *"naikkan sleep_quality 4→8"* yang tak bisa user lakukan langsung) dan **0% murni actionable**. Setup kami (**locked**) menukar 37.5 poin success demi **100% rekomendasi behavior-only yang benar-benar bisa dijalankan** — inilah yang membuat pipeline ini *prescriptive*, bukan sekadar deskriptif.
+
 ## Setup
 
 ### 1. Buat virtual environment & install dependencies
