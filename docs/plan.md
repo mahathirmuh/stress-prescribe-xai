@@ -24,7 +24,7 @@ Preferensi user:
 - **Urutan**: CatBoost end-to-end dulu, baru tambah RF/TabNet
 - **Env**: Buat dari nol (venv + requirements.txt)
 
-User: mahasiswa S2 Kecerdasan Komputasional, untuk UTS.
+User: mahasiswa S2 Kecerdasan Komputasional, untuk UAS.
 
 ---
 
